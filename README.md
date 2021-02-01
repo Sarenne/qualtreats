@@ -1,5 +1,28 @@
 This is a tool for automating the process of creating online listening tests in Qualtrics.
 
+This README contains information about the forked repo origins (scroll...) as well as some informationt that is specific to `discriminative_turn`-style experiments.
+
+# Discriminative Turns
+## End2End Instructions
+
+Currently, the generation process is quite modular (*cough, piecemeal*) and requires some manual interventions. 
+
+1. Experiments must be generated through the `discriminative_turns` repo, using an `ExperimentGenerator()` object (see `experiment_genertor.ipynb` for examples). This will produce a labelled directory containing the target amd negative audio samples as wav files, index of the target, and the full conversation as a JSON. 
+2. Data has to be manually put on nfs ('/group/project/cstr3/html/sarenne/test_qualtrics/‘). Current this is done by 
+  ```
+  $ scp -r Documents/PhD/discriminative_turns/experiment_samples/sw_40106_148_4_4_2 s1301730@student.ssh.inf.ed.ac.uk:/group/project/cstr3/html/sarenne/test_qualtrics
+  ```
+   Once it’s there, it can be accessed through browser and qualtrics!
+
+3. To generate experiments automatically through qualtrics, urls to the audio files and conversion.json have to be passed to the `testmaker_discrim.py` script.
+    - To collect a list of urls, ssh into DICE and run `get_urls()` (currently just IPython, copy-paste from `discriminative_turn_utils.py`) to write a json of {experiment_ids: audio_urls}.  
+    - This needs to be copied back to your local machine and saved using 
+    ```
+    $ scp s1301730@student.ssh.inf.ed.ac.uk:/afs/inf.ed.ac.uk/user/s13/s1301730/Documents/discriminitive_turns/qualtrics_resources/urls.json /Users/sarenne/Documents/PhD/qualtreats/discrim_turn_resources
+    ```
+      This file can now be passed as input to generate a qualtrics survey!
+
+-----------
 # Background
 This tool reduces number of manual steps required to create a functioning test. It works by generating a JSON file which Qualtrics will interpret to  produce a survey. It was originally created for use in evaluating text-to-speech systems, but has wider applications in speech technology and other audio-related fields.
 
