@@ -5,14 +5,16 @@ This README contains information about the forked repo origins (scroll...) as we
 # Discriminative Turns
 ## End2End Instructions
 
-Currently, the generation process is quite modular (*cough, piecemeal*) and requires some manual interventions. 
+Currently, the generation process is a bit piecemeal (*cough, modular*) and requires some manual interventions. 
 
-1. Experiments must be generated through the `discriminative_turns` repo, using an `ExperimentGenerator()` object (see `experiment_genertor.ipynb` for examples). This will produce a labelled directory containing the target amd negative audio samples as wav files, index of the target, and the full conversation as a JSON. 
-2. Data has to be manually put on nfs ('/group/project/cstr3/html/sarenne/test_qualtrics/‘). Current this is done by 
+1. Experiments must be generated through the `discriminative_turns` repo, using an `ExperimentGenerator()` object (see `experiment_genertor.ipynb` for examples). Given a dataset and some specifying parameters, this will produce a labelled directory containing target amd negative audio samples (wav files), the index of the target, and the full conversation (JSON file). 
+2. Data has to be manually moved on nfs ('/group/project/cstr3/html/sarenne/test_qualtrics/‘). Current this is done by 
   ```
   $ scp -r Documents/PhD/discriminative_turns/experiment_samples/sw_40106_148_4_4_2 s1301730@student.ssh.inf.ed.ac.uk:/group/project/cstr3/html/sarenne/test_qualtrics
   ```
-   Once it’s there, it can be accessed through browser and qualtrics!
+   Once it’s there, it can be accessed through the [browser](https://groups.inf.ed.ac.uk/cstr3/sarenne/test_qualtrics/sw_40106_148_4_4_2/) and Qualtrics!
+   
+   NOTE: frustratingly, data can't be hosted on `http://data.cstr.ed.ac.uk/` (which can be accessed through `afs`; this would make moving data slightly easier as AFS is easy to mount while NFS requires ssh access). Instead, data has to be hosted on https://groups.inf.ed.ac.uk (through `nfs`) to be used with Qualtrics. Current best guess as to why is that Qualtrics only reads https urls; the certificate for `https://data.cstr...` is not valid (it points to `groups.inf.ed.ac.uk`). This is known by compute support, not sure when it will be fixed. 
 
 3. To generate experiments automatically through qualtrics, urls to the audio files and conversion.json have to be passed to the `testmaker_discrim.py` script.
     - To collect a list of urls, ssh into DICE and run `get_urls()` (currently just IPython, copy-paste from `discriminative_turn_utils.py`) to write a json of {experiment_ids: audio_urls}.  
