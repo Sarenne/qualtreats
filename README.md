@@ -24,6 +24,8 @@ Currently, the generation process is a bit piecemeal (*cough, modular*) and requ
     ```
       This file can now be passed as input to generate a qualtrics survey!
 
+4. Update the path of the url JSON file in the `testmaker_discrim.py` script and run. This will generate a `.qsf` file which can be imported into Qualtrics.
+
 -----------
 # Background
 This tool reduces number of manual steps required to create a functioning test. It works by generating a JSON file which Qualtrics will interpret to  produce a survey. It was originally created for use in evaluating text-to-speech systems, but has wider applications in speech technology and other audio-related fields.
