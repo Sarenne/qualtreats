@@ -24,8 +24,10 @@ AUDIO_HTML_TEMPLATE = "audio_template.html"
 PLAY_BUTTON = "play_button.html"
 
 # Where data is stored
-BASE_PATH ='/group/project/cstr3/html/sarenne/test_qualtrics/' # where generated experiment datas are stored
-BASE_URL = 'https://groups.inf.ed.ac.uk/cstr3/sarenne/test_qualtrics/'
+# BASE_PATH ='/group/project/cstr3/html/sarenne/test_qualtrics/' # where generated experiment datas are stored
+# BASE_URL = 'https://groups.inf.ed.ac.uk/cstr3/sarenne/test_qualtrics/'
+BASE_PATH = '/afs/inf.ed.ac.uk/group/cstr/datawww/sarenne/test_qualtrics/'
+BASE_URL = 'https://data.cstr.ed.ac.uk/sarenne/test_qualtrics/'
 URLS_PATH = 'discrim_turn_resources/urls.json'
 
 ##### Define global methods #####
@@ -69,7 +71,7 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, contexts, ba
         new_q['SurveyID'] = config.survey_id
         # Update question ID and related fields
         new_q['Payload'].update({'QuestionID' : f'QID{q_id}',
-                                 'DataExportTag' : f'QID{export_id}',
+                                 'DataExportTag' : f'Q{export_id}',
                                  'QuestionDescription' : f'Q{q_id}',
                                  })
         new_q.update({'PrimaryAttribute' : f'QID{q_id}',
@@ -204,14 +206,11 @@ def main():
     question_ids = []
 
     # create counters to use when indexing optional lists
-    q_counter = 1 # qualtrics question numbering starts at 1
+    q_counter = 0 # qualtrics question numbering starts at 1
 
     for exp_id in experiment_ids:
 
-        import IPython
-        IPython.embed()
-
-        new_qs, ids = make_discrim_question_set(q_counter=q_counter,
+        new_qs, ids = make_discrim_question_set(q_counter=q_counter+1,
                                                 experiment_id=exp_id,
                                                 audio_urls=experiment_ids[exp_id],
                                                 contexts=contexts,
@@ -221,8 +220,14 @@ def main():
         question_ids.extend(ids)
         q_counter = len(questions)
 
+        import IPython
+        IPython.embed()
+
     # survey_length is determined by number of questions created
     survey_length = len(questions)
+
+    import IPython
+    IPython.embed()
 
     # Create all the items in survey elements, with helper function where doing so is not trivial
     blocks = make_blocks(question_ids, basis_blocks)
