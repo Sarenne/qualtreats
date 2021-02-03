@@ -139,8 +139,9 @@ def make_blocks(question_ids, basis_blocks, page_breaks=True):
     NOTE this doesn't make new blocks, it just adds questions to the basis_block (elements "Survey Blocks")
     """
     new_blocks = basis_blocks
-    block_elements = []
-    for i in range(1,len(question_ids)+1):
+    # block_elements = []
+    block_elements = new_blocks['Payload'][0]['BlockElements'] # Start with the intro and page break in the template
+    for i in range(2,len(question_ids)+2): # Q1 is already loaded from template
     # for q_id in question_ids:
         block_element = OrderedDict()
         block_element['Type'] = 'Question'
@@ -208,12 +209,9 @@ def main():
     question_ids = []
 
     # create counters to use when indexing optional lists
-    q_counter = 0 # qualtrics question numbering starts at 1
+    q_counter = 1 # qualtrics question numbering starts at 1 (and first 'question' is the intro)
 
     for exp_id in experiment_ids:
-
-        import IPython
-        IPython.embed()
 
         new_qs, ids = make_discrim_question_set(q_counter=q_counter+1,
                                                 experiment_id=exp_id,
@@ -223,14 +221,14 @@ def main():
                                                 )
         questions.extend(new_qs)
         question_ids.extend(ids)
-        q_counter = len(questions)
+        q_counter += len(new_qs)
+
+        import IPython
+        IPython.embed()
 
 
     # survey_length is determined by number of questions created
-    survey_length = len(questions)
-
-    import IPython
-    IPython.embed()
+    survey_length = q_counter
 
     # Create all the items in survey elements, with helper function where doing so is not trivial
     blocks = make_blocks(question_ids, basis_blocks)
@@ -239,7 +237,10 @@ def main():
     survey_count = basis_survey_count
     survey_count['SecondaryAttribute'] = str(survey_length)
     # add all the created elements together
-    elements = [blocks, flow] + elements[2:7]  + questions + [rs]
+    elements = [blocks, flow] + elements[2:9] + questions + [rs] # elements[8] is the intro
+
+    import IPython
+    IPython.embed()
 
     # Add the elements to the full survey
     # Not strictly necessary as we didn't do deep copies of elements

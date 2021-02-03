@@ -36,24 +36,7 @@
               "QuestionID": "QID1"
             },
             {
-              "Type": "Question",
-              "QuestionID": "QID2"
-            },
-            {
-              "Type": "Question",
-              "QuestionID": "QID3"
-            },
-            {
-              "Type": "Question",
-              "QuestionID": "QID4"
-            },
-            {
-              "Type": "Question",
-              "QuestionID": "QID5"
-            },
-            {
-              "Type": "Question",
-              "QuestionID": "QID10"
+              "Type": "Page Break"
             }
           ]
         },
@@ -177,14 +160,43 @@
     {
       "SurveyID": "SV_82GxylVdVIF3r7v",
       "Element": "SQ",
-      "PrimaryAttribute": "QID15",
+      "PrimaryAttribute": "QID1",
+      "SecondaryAttribute": "Discriminative Turns When we engage in conversation with another person, we make use of the words...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<div><span style=\"font-size: 26px;\">Discriminative Turns</span></div>\n<span style=\"font-size:16px;\">When we engage in conversation with another person, we make use of the words being spoken and _the way that they are said_ to understand what someone means. The exact same phrase can be said in ways that mean completely different things. </span><br>\n<br>\n<span style=\"font-size:22px;\">Task</span><span style=\"font-size:16px;\"><br>\nDuring each round of this task, you'll be presented with a set of phone conversation segments; each segment consists of a turn and a response in this form:</span>\n\n<div class=\"chat\">\n  <div class=\"mine messages\">\n    <div class=\"message last\">\n      The initial turn\n     </div>\n  </div>\n  <div class=\"yours messages\">\n    <div class=\"message last\">\n      The response\n    </div>\n  </div>\n</div>\n\nOR\n\n<div class=\"chat\">\n  <div class=\"yours messages\">\n    <div class=\"message last\">\n      The initial turn\n     </div>\n  </div>\n  <div class=\"mine messages\">\n    <div class=\"message last\">\n      The response\n    </div>\n  </div>\n</div>\n\n<span style=\"font-size:16px;\"><br>\nEach set of audio segments contains the _true_ turn-response pair; the other segments are synthetic. Within each round of turn-response segments, you'll complete 5 experiments. Each experiment involves additional contextual information about the phone conversation.<br>\n<br>\n </span><span style=\"font-size:19px;\">Your task</span><span style=\"font-size:16px;\"><br>\nin each experiment, your task is to assign each audio segment a score of how likely it is to be the real turn-response; where - 4: Very likely - 3: unsure/likely - 2: Unsure/unlikely - 1: Very unlikely</span><br>\n<br>\n&nbsp;",
+        "DefaultChoices": false,
+        "DataExportTag": "Q1",
+        "QuestionType": "DB",
+        "Selector": "TB",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Discriminative Turns When we engage in conversation with another person, we make use of the words...",
+        "ChoiceOrder": [],
+        "Validation": {
+          "Settings": {
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 9,
+        "NextAnswerId": 1,
+        "QuestionID": "QID1"
+      }
+    },
+    {
+      "SurveyID": "SV_82GxylVdVIF3r7v",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID2",
       "SecondaryAttribute": "Score each of the following speech segments by how likely they are to be the true response in the conversation above ",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "Consider the conversation:\n\n\n<div style=\"text-align: left; width:500px\"><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">Speaker A: the initial tur</span><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">n</span></div> \n<div style=\"text-align: right; width:500px\"> <span style=\"text-align: right; color:#065B9A; font-size: 16pt\"> <b> Speaker B: the response </b> </span> </div>\n\n<div><br></div><div><br></div><div>Score each of the following speech segments by how likely they are to be the&nbsp;<em>true&nbsp;</em>response in the conversation above.</div>\n\n\n<em></em>",
         "DefaultChoices": false,
         "DataExportTag": "Q2.1",
-        "QuestionID": "QID15",
+        "QuestionID": "QID2",
         "QuestionType": "Matrix",
         "Selector": "Likert",
         "SubSelector": "SingleAnswer",
