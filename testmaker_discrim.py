@@ -134,7 +134,7 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, contexts, ba
     return q_set, q_exports
 
 # make n new blocks according to the survey_length
-def make_blocks(question_ids, basis_blocks):
+def make_blocks(question_ids, basis_blocks, page_breaks=True):
     """
     NOTE this doesn't make new blocks, it just adds questions to the basis_block (elements "Survey Blocks")
     """
@@ -146,6 +146,8 @@ def make_blocks(question_ids, basis_blocks):
         block_element['Type'] = 'Question'
         block_element['QuestionID'] = f'QID{i}'
         block_elements.append(block_element)
+        if page_breaks:
+            block_elements.append({'Type': 'Page Break'})
     new_blocks['Payload'][0]['BlockElements'] = block_elements
     return new_blocks
 
@@ -210,18 +212,19 @@ def main():
 
     for exp_id in experiment_ids:
 
+        import IPython
+        IPython.embed()
+
         new_qs, ids = make_discrim_question_set(q_counter=q_counter+1,
                                                 experiment_id=exp_id,
                                                 audio_urls=experiment_ids[exp_id],
                                                 contexts=contexts,
-                                                basis_question=elements[12]
+                                                basis_question=elements[-1]
                                                 )
         questions.extend(new_qs)
         question_ids.extend(ids)
         q_counter = len(questions)
 
-        import IPython
-        IPython.embed()
 
     # survey_length is determined by number of questions created
     survey_length = len(questions)
