@@ -96,15 +96,18 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, contexts, ba
             q_json['Payload']['Choices'][f'{i+1}'] = choice
         return q_json
 
-    def update_text(q_json, exp_id, turns_before, turns_after, individual=False):
+    def update_text(q_json, speaker_turns, utter_id, turns_before, turns_after, individual=False):
         """Fill in question text with the conversation context. Return updated question template object"""
 
-        conversation = json.loads(requests.get(BASE_URL + exp_id + '/conversation.json').text)
-        utter_id = int(exp_id.split("_")[-4])
-
-        q_text = context_print(utter_id, conversation, turns_before, turns_after, individual=individual)
+        q_text = context_print(utter_id, speaker_turns, turns_before, turns_after, individual=individual)
         q_json['Payload'].update({'QuestionText': q_text})
         return q_json
+
+
+    # Load the conversation and build speaker turns
+    conversation = json.loads(requests.get(BASE_URL + experiment_id + '/conversation.json').text)
+    utter_id = int(experiment_id.split("_")[-4])
+    speaker_turns = make_speaker_turns(conversation)
 
     # Store the question set  (NOTE should this be a list?)
     q_set = []
@@ -115,7 +118,7 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, contexts, ba
     indiv = True
     new_q = q_set_up(q_counter, q_export)
     new_q = update_choices(new_q, audio_urls, individual=indiv)
-    new_q = update_text(new_q, experiment_id, 0, 0, individual=indiv)
+    new_q = update_text(new_q, speaker_turns, utter_id, 0, 0, individual=indiv)
     q_set.append(new_q)
     q_exports.append(q_export)
 
@@ -127,7 +130,7 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, contexts, ba
 
         # Fill template with audio choices and text
         new_q = update_choices(new_q, audio_urls, individual=indiv)
-        new_q = update_text(new_q, experiment_id, before, after, individual=indiv)
+        new_q = update_text(new_q, speaker_turns, utter_id, before, after, individual=indiv)
         q_set.append(new_q)
         q_exports.append(q_export)
 
