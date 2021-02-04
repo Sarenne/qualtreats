@@ -76,8 +76,14 @@ def context_print(utter_id, speaker_turns, turns_before, turns_after, individual
     target_turn = [turn for turn in speaker_turns if utter_id in turn['utter_id']][0]
     target_turn_id = target_turn['turn_id']
 
-        # Print bubble turns
+    # Print chat bubble turns
     def bubbles_print(txt_list, last=True, bold=False):
+        """
+        Generic method for returning list of turn content as chat bubbles. Note that this doesn't return the full chat
+        turn. Bubbles can be either class {message, message last (with a message tail)}
+
+        Options for returning 'message last' style message and bold text.
+        """
 
         start = stop = ''
         if bold:
@@ -96,8 +102,10 @@ def context_print(utter_id, speaker_turns, turns_before, turns_after, individual
 
     def print_turn_css(turn, utter1_all, individual):
         """
-        Print each utterance in the speaker turn. Special behaviour for utter1 turn: only display utter1
-        unless context AFTER is >0, then display all potential utterances in the turn (utter1_all).
+        Print each utterance in the speaker turn. Special behaviour for
+        - utter1: utter1 is always in bold. Only display speaker turns after utter1 if context AFTER is >0 (utter1_all)
+        - utter0: all turns can be bold (i.e., if they are in the audio) or not
+        - (all others): print all speaker turns in non-bold
         """
         turn_text = ''
         speaker = turn["speaker"][0]
@@ -124,46 +132,6 @@ def context_print(utter_id, speaker_turns, turns_before, turns_after, individual
 
         return turn_text
 
-
-    # # Print turns
-    # def print_turn(turn, utter1_all, individual):
-    #     """
-    #     Print each utterance in the speaker turn. Special behaviour for utter1 turn: only display utter1
-    #     unless context AFTER is >0, then display all potential utterances in the turn (utter1_all).
-    #     """
-    #     turn_str = ""
-    #     speaker = turn["speaker"][0]
-    #
-    #     # BOLD utter0 (full turn)
-    #     if utter_id - 1 in turn["utter_id"]:
-    #         for text in turn["text"]:
-    #             if individual:
-    #                 turn_str += f'{side_starts[speaker]} {print_transcript(text)} {end}'
-    #             else:
-    #                 turn_str += f'{side_starts[speaker]} <b>{print_transcript(text)}</b> {end}'
-    #     # BOLD utter1
-    #     elif utter_id in turn["utter_id"]:
-    #         turn_str += f'{side_starts[speaker]} <b>{print_transcript(turn["text"][0])}</b> {end}'
-    #         if utter1_all and len(turn['text']):
-    #             for text in turn["text"][1:]:
-    #                 turn_str += f'{side_starts[speaker]} {print_transcript(text)} {end}'
-    #     # normal other utters (full turns)
-    #     else:
-    #         for text in turn["text"]:
-    #             turn_str += f'{side_starts[speaker]} {print_transcript(text)} {end}'
-    #
-    #     return turn_str
-    #
-    # # Formatting
-    # def markdown_start(align, color, font_size=12, width=500):
-    #     """Return the markdown start symbol for a particular speaker (alignment, color)"""
-    #     return f'<div style="text-align: {align}; width:{width}px"> <span style="color:{color}; font-size: {font_size}pt">'
-    #
-    # side_starts = {"A": markdown_start('right', '#065B9A'), #'<div style="text-align: right"> <span style="color:#065B9A; font-size: 18pt">',
-    #                "B": markdown_start('left', '#069A62'),}
-    # end = "</span> </div>"
-
-
     turn_start = {"A":' <div class="yours messages">',
                   "B": '<div class="mine messages">',
                  }
@@ -173,21 +141,14 @@ def context_print(utter_id, speaker_turns, turns_before, turns_after, individual
     full_string = '<div class="chat">'
     for turn in speaker_turns[max(0, target_turn_id - turns_before - 1 ):
                                min(target_turn_id + turns_after + 1, len(speaker_turns))]:
-
         turn_string = turn_start[turn['speaker'][0]]
-
         turn_string += print_turn_css(turn, turns_after>0, individual)
         turn_string += turn_end
+
         full_string += turn_string
-# #     return tt
-#
-#     # The actual printing...
-#     full_string = ""
-#     for turn in speaker_turns[max(0, target_turn_id - turns_before - 1 ):
-#                                min(target_turn_id + turns_after + 1, len(speaker_turns))]:
-#         full_string += print_turn(turn, turns_after>0, individual)
 
     full_string += turn_end
+
     return full_string
 
 def get_urls(experiment_ids=[], write=False,
