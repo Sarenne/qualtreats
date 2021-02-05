@@ -113,17 +113,7 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, contexts, ba
     q_set = []
     q_exports = []
 
-    # Get individual context round & append
-    # q_export = experiment_id + f'_Q0'
-    # indiv = True
-    # new_q = q_set_up(q_counter, q_export)
-    # new_q = update_choices(new_q, audio_urls, individual=indiv)
-    # new_q = update_text(new_q, speaker_turns, utter_id, 0, 0, individual=indiv)
-    # q_set.append(new_q)
-    # q_exports.append(q_export)
-
     for i, ((before, after), indiv) in enumerate(contexts):
-        # indiv=False
         # Generate a discrim turn experiment
         q_export = f'Q{i}_' + experiment_id
         new_q = q_set_up(q_counter + i + 1, q_export)
@@ -189,6 +179,11 @@ def main():
     # # get only args which were specified on command line
     # args = [key for key, value in vars(args).items() if value==True]
 
+    # Define args
+    context_conditions = [((0,0), True), ((0,0), False), ((2,0), False), ((5,0), False), ((5,5), False)]
+    with open(URLS_PATH) as fs:
+        experiment_ids = json.load(fs)
+
     # get json to use as basis for new questions
     basis_json = get_basis_json()
     elements = basis_json['SurveyElements']
@@ -201,11 +196,6 @@ def main():
     basis_flow = elements[1]
     rs = elements[2]
     basis_survey_count = elements[7]
-
-    context_conditions = [((0,0), True), ((0,0), False), ((2,0), False), ((5,0), False), ((5,5), False)]
-
-    with open(URLS_PATH) as fs:
-        experiment_ids = json.load(fs)
 
     # create list to store generated question blocks
     questions = []
@@ -226,9 +216,8 @@ def main():
         question_ids.extend(ids)
         q_counter += len(new_qs)
 
-        import IPython
-        IPython.embed()
-
+        # import IPython
+        # IPython.embed()
 
     # survey_length is determined by number of questions created
     survey_length = q_counter
