@@ -71,7 +71,7 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, contexts, ba
         new_q['SurveyID'] = config.survey_id
         # Update question ID and related fields
         new_q['Payload'].update({'QuestionID' : f'QID{q_id}',
-                                 'DataExportTag' : f'Q{export_id}',
+                                 'DataExportTag' : f'{export_id}',
                                  'QuestionDescription' : f'Q{q_id}',
                                  })
         new_q.update({'PrimaryAttribute' : f'QID{q_id}',
@@ -114,18 +114,18 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, contexts, ba
     q_exports = []
 
     # Get individual context round & append
-    q_export = experiment_id + f'_Q0'
-    indiv = True
-    new_q = q_set_up(q_counter, q_export)
-    new_q = update_choices(new_q, audio_urls, individual=indiv)
-    new_q = update_text(new_q, speaker_turns, utter_id, 0, 0, individual=indiv)
-    q_set.append(new_q)
-    q_exports.append(q_export)
+    # q_export = experiment_id + f'_Q0'
+    # indiv = True
+    # new_q = q_set_up(q_counter, q_export)
+    # new_q = update_choices(new_q, audio_urls, individual=indiv)
+    # new_q = update_text(new_q, speaker_turns, utter_id, 0, 0, individual=indiv)
+    # q_set.append(new_q)
+    # q_exports.append(q_export)
 
-    for i, (before, after) in enumerate(contexts):
-        indiv=False
+    for i, ((before, after), indiv) in enumerate(contexts):
+        # indiv=False
         # Generate a discrim turn experiment
-        q_export = experiment_id + f'_Q{i+1}'
+        q_export = f'Q{i}_' + experiment_id
         new_q = q_set_up(q_counter + i + 1, q_export)
 
         # Fill template with audio choices and text
@@ -202,7 +202,7 @@ def main():
     rs = elements[2]
     basis_survey_count = elements[7]
 
-    contexts = [(0,0), (2,0), (5,0), (5,5),]
+    context_conditions = [((0,0), True), ((0,0), False), ((2,0), False), ((5,0), False), ((5,5), False)]
 
     with open(URLS_PATH) as fs:
         experiment_ids = json.load(fs)
@@ -219,7 +219,7 @@ def main():
         new_qs, ids = make_discrim_question_set(q_counter=q_counter+1,
                                                 experiment_id=exp_id,
                                                 audio_urls=experiment_ids[exp_id],
-                                                contexts=contexts,
+                                                contexts=context_conditions,
                                                 basis_question=elements[-1]
                                                 )
         questions.extend(new_qs)
