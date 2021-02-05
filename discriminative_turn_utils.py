@@ -2,8 +2,11 @@ import glob
 import json
 import random
 import re
+import string
 
-""""""
+import numpy as np
+
+"""This file contains helper methods for making surveys in Qualtrics"""
 
 def print_transcript(text):
     """
@@ -151,6 +154,18 @@ def context_print(utter_id, speaker_turns, turns_before, turns_after, individual
 
     return full_string
 
+
+
+"""
+Methods for qualtrics survey set up. Surveys require pointers to audio files (urls), and description of survey structure
+to generate (experiment_ids, and context conditions to use)
+"""
+
+OUTPUT_PATH = 'discrim_turn_resources/'
+# output_path = '/afs/inf.ed.ac.uk/user/s13/s1301730/Documents/discriminitive_turns/qualtrics_resources'
+# http://data.cstr.ed.ac.uk/sarenne/test_qualtrics/
+# https://groups.inf.ed.ac.uk/cstr3/sarenne/test_qualtrics/sw_40106_148_4_4_2/
+
 def get_urls(experiment_ids=[], write=False,
              base_nfs_path='/group/project/cstr3/html/sarenne/test_qualtrics/',
              base_path='/afs/inf.ed.ac.uk/group/cstr/datawww/sarenne/test_qualtrics/',
@@ -161,17 +176,75 @@ def get_urls(experiment_ids=[], write=False,
 
     NOTE access to nfs requires working through SSH! Therefore, use scp to copy back to local machine.
     """
-    # output_path = '/afs/inf.ed.ac.uk/user/s13/s1301730/Documents/discriminitive_turns/qualtrics_resources'
-    output_path = 'discrim_turn_resources/'
-    # http://data.cstr.ed.ac.uk/sarenne/test_qualtrics/
-    # https://groups.inf.ed.ac.uk/cstr3/sarenne/test_qualtrics/sw_40106_148_4_4_2/
+
     if len(experiment_ids) < 1:
         experiment_ids = [p.split('/')[-1] for p in glob.glob(base_path + '/*')]
 
     experiment_data = {exp_id: glob.glob(base_path + exp_id + '/*.wav') for exp_id in experiment_ids}
     url_data = {exp_id: [base_url + exp_id + '/' + e.split('/')[-1] for e in files] for exp_id, files in experiment_data.items()}
     if write:
-        with open(output_path + 'urls.json', 'w+') as fs:
+        with open(OUTPUT_PATH + 'urls.json', 'w+') as fs:
             json.dump(url_data, fs)
 
     return experiment_data, url_data
+
+
+def assign_surveys(experiment_ids, context_conditions, repeats, write=False):
+    """
+    For a set of experiment ids, write a json file to structure a set of surveys st for each experiment_id,
+    each context condition is included in 'repeats' surveys, and each survey only contains 1 instance of a
+    particular experiment_id.
+
+    Return:
+        json dict of {survey_id: {experiment_id: context_condition,
+                                  ...
+                                  },
+                                  ...
+                     }
+
+    """
+
+    def assign_participant(part_key, assignments):
+        """
+        Each participant will be assigned exactly (or at most?) 1 context condition per sample
+
+        Args
+            part_key (str): participant key (letter)
+            assignments (list of arrays): list of arrays corresponding to the grouping per context condition
+        """
+        return [context_conditions[i] for i, group in enumerate(assignments) if part_key in group][0]
+
+    def assign_sample(sample_id):
+        """"
+        For each sample, split participants randomly and evenly between the context conditions st each participants is only assigned to a single context condition. Update each participant's assigned context condition in participation dict.
+
+        Args
+            contexts (list of tuples): list of context conditions to assign for each experiment id
+            repeats (int): number of times each context condition should be assigned
+            sample_id (str): experiment id that is being assigned
+            participants (dict of dicts): dict that contains the assignments for each participant
+
+        Return
+            Updated version of the participant dict (with new assignments for the particular sample)
+        """
+        part_keys = list(participants.keys())
+        np.random.shuffle(part_keys)
+        assigns = np.array_split(part_keys, len(context_conditions))
+
+        for p in participants:
+            participants[p][sample_id] = assign_participant(p, assigns)
+
+        return participants
+
+    # the main loop
+    parts = list(string.ascii_lowercase)[:len(context_conditions * repeats)]
+    participants = {p:{} for p in parts}
+
+    for exp in experiment_ids:
+        participants = assign_sample(exp)
+
+    if write:
+        with open(OUTPUT_PATH + 'randomized_structure.json', 'w+') as fs:
+            json.dump(participants, fs)
+
+    return participants
