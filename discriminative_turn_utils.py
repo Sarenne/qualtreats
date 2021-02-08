@@ -8,8 +8,8 @@ import numpy as np
 
 """This file contains helper methods for making surveys in Qualtrics"""
 
-question_intro = '<div>Consider the following segment of a phone conversation (you will hear the sections in <b>bold</b>):</div>'
-question_outro = '<div><u>Assign each audio segment a score of how likely it is to be the&nbsp;<span style="font-weight: bolder;">true</span>&nbsp;turn-response in this conversation</u></div>'
+question_intro = '<div>Consider the following segment of a phone conversation (you will hear the sections in <u><b>underlined bold</b></u>):</div>'
+question_outro = '<div><u>Only one of the following segments is the <b>true</b> turn-response in this conversation. Assign each audio segment a score of how likely it is to be the <b>true</b> turn-response in this conversation</u></div>'
 
 def print_transcript(text):
     """
@@ -98,7 +98,7 @@ def context_print(utter_id, speaker_turns, turns_before, turns_after, individual
 
         start = stop = ''
         if bold:
-            start, stop = '<b>', "</b>"
+            start, stop = '<u><b>', "</b></u>"
 
         last = ' last'
         if not(last):
