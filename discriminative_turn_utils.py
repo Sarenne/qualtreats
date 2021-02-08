@@ -8,6 +8,9 @@ import numpy as np
 
 """This file contains helper methods for making surveys in Qualtrics"""
 
+question_intro = '<div>Consider the following segment of a phone conversation (you will hear the sections in <b>bold</b>):</div>'
+question_outro = '<div><u>Assign each audio segment a score of how likely it is to be the&nbsp;<span style="font-weight: bolder;">true</span>&nbsp;turn-response in this conversation</u></div>'
+
 def print_transcript(text):
     """
     Clean transcript for printing in the experiment player:
@@ -70,6 +73,11 @@ def make_speaker_turns(conversation):
         speaker_turns.append(turn)
 
     return speaker_turns
+
+
+def question_print(question_content, before_text=question_intro, after_text=question_outro):
+    """Print the full question text for Qualtrics, including intro + instructions"""
+    return before_text + question_content + after_text
 
 
 def context_print(utter_id, speaker_turns, turns_before, turns_after, individual=False):
@@ -139,9 +147,10 @@ def context_print(utter_id, speaker_turns, turns_before, turns_after, individual
                   "B": '<div class="mine messages">',
                  }
     turn_end = "</div>"
+    turn_dots = '<div class="dots messages"><div class="message"> .  .  . </div></div>'
 
     # The actual printing...
-    full_string = '<div class="chat">'
+    full_string = '<div class="chat">' + turn_dots
     for turn in speaker_turns[max(0, target_turn_id - turns_before - 1 ):
                                min(target_turn_id + turns_after + 1, len(speaker_turns))]:
         turn_string = turn_start[turn['speaker'][0]]
@@ -150,7 +159,7 @@ def context_print(utter_id, speaker_turns, turns_before, turns_after, individual
 
         full_string += turn_string
 
-    full_string += turn_end
+    full_string += turn_dots + turn_end
 
     return full_string
 
@@ -168,9 +177,10 @@ OUTPUT_PATH = 'discrim_turn_resources/'
 
 def get_urls(experiment_ids=[], write=False,
              base_nfs_path='/group/project/cstr3/html/sarenne/test_qualtrics/',
-             base_path='/afs/inf.ed.ac.uk/group/cstr/datawww/sarenne/test_qualtrics/',
-             base_cstr_url='https://groups.inf.ed.ac.uk/cstr3/sarenne/test_qualtrics/',
-             base_url='https://data.cstr.ed.ac.uk/sarenne/test_qualtrics/'):
+             path_ext = 'qualtrics_pilot10/',
+             base_path='/afs/inf.ed.ac.uk/group/cstr/datawww/sarenne/',
+             base_cstr_url='https://groups.inf.ed.ac.uk/cstr3/sarenne/',
+             base_url='https://data.cstr.ed.ac.uk/sarenne/'):
     """
     Return the urls for files stored in https://groups.inf.ed.ac.uk/cstr3/ by checking nfs
 
@@ -178,10 +188,10 @@ def get_urls(experiment_ids=[], write=False,
     """
 
     if len(experiment_ids) < 1:
-        experiment_ids = [p.split('/')[-1] for p in glob.glob(base_path + '/*')]
+        experiment_ids = [p.split('/')[-1] for p in glob.glob(base_path + path_ext + '/*')]
 
-    experiment_data = {exp_id: glob.glob(base_path + exp_id + '/*.wav') for exp_id in experiment_ids}
-    url_data = {exp_id: [base_url + exp_id + '/' + e.split('/')[-1] for e in files] for exp_id, files in experiment_data.items()}
+    experiment_data = {exp_id: glob.glob(base_path + path_ext + exp_id + '/*.wav') for exp_id in experiment_ids}
+    url_data = {exp_id: [base_url + path_ext + exp_id + '/' + e.split('/')[-1] for e in files] for exp_id, files in experiment_data.items()}
     if write:
         with open(OUTPUT_PATH + 'urls.json', 'w+') as fs:
             json.dump(url_data, fs)
