@@ -26,8 +26,9 @@ PLAY_BUTTON = "play_button.html"
 # Where data is stored
 # BASE_PATH ='/group/project/cstr3/html/sarenne/test_qualtrics/' # where generated experiment datas are stored
 # BASE_URL = 'https://groups.inf.ed.ac.uk/cstr3/sarenne/test_qualtrics/'
-BASE_PATH = '/afs/inf.ed.ac.uk/group/cstr/datawww/sarenne/test_qualtrics/'
-BASE_URL = 'https://data.cstr.ed.ac.uk/sarenne/test_qualtrics/'
+BASE_EXT = 'sarenne/qualtrics_pilot10/'
+BASE_PATH = f'/afs/inf.ed.ac.uk/group/cstr/datawww/{BASE_EXT}'
+BASE_URL = f'https://data.cstr.ed.ac.uk/{BASE_EXT}'
 URLS_PATH = 'discrim_turn_resources/urls.json'
 
 ##### Define global methods #####
@@ -81,7 +82,7 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, context_cond
     def update_choices(q_json, audio_urls, individual=False):
         """Fill matrix with audio samples for a particular experiment. Return updated question template object"""
 
-        indv_urls = [f for f in audio_urls if len(f.split("/")[-1][:-4])>2]
+        indv_urls = [f for f in audio_urls if f.split("/")[-1][-8:-4]=='indv']
         if individual:
             urls = indv_urls
         else:
@@ -99,7 +100,8 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, context_cond
     def update_text(q_json, speaker_turns, utter_id, turns_before, turns_after, individual=False):
         """Fill in question text with the conversation context. Return updated question template object"""
 
-        q_text = context_print(utter_id, speaker_turns, turns_before, turns_after, individual=individual)
+        q_content = context_print(utter_id, speaker_turns, turns_before, turns_after, individual=individual)
+        q_text = question_print(q_content)
         q_json['Payload'].update({'QuestionText': q_text})
         return q_json
 
@@ -115,10 +117,13 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, context_cond
 
     for i, cntxt_id in enumerate(context_ids):
 
+        # import IPython
+        # IPython.embed()
+
         (before, after), indiv = context_conditions[cntxt_id]
 
         # Generate a discrim turn experiment
-        q_export = f'Q{cntxt_id}_' + experiment_id
+        q_export = f'C{cntxt_id}_' + experiment_id
         new_q = q_set_up(q_counter + i + 1, q_export)
 
         # Fill template with audio choices and text
@@ -225,8 +230,6 @@ def main():
             question_ids.extend(ids)
             q_counter += len(new_qs)
 
-            # import IPython
-            # IPython.embed()
 
         # survey_length is determined by number of questions created
         survey_length = q_counter
