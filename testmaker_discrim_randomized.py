@@ -17,7 +17,8 @@ from discriminative_turn_utils import *
 ##### Define global params #####
 # Input and output json objects for qualtrics survey
 JSON_TEMPLATE = "template_discrim.json"
-SAVE_TEMPLATE = "output_survey_templates/discrim"
+SAVE_TEMPLATE = "output_survey_templates/test/discrim"
+
 
 # audio templates should not be changed
 AUDIO_HTML_TEMPLATE = "audio_template.html"
@@ -91,10 +92,11 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, context_cond
         choice_template = q_json['Payload']['Choices']['1']# make choice template
         # empty 'Choices' so flexible number can be added using Choice template
         q_json['Payload']['Choices'] = {}
-        for i, audio in enumerate(urls):
+        for audio in urls:
+            indx = int(audio.split('/')[-1][0])
             choice = copy.deepcopy(choice_template)
             choice['Display'] = get_player_html(audio) # add audio player as choice
-            q_json['Payload']['Choices'][f'{i+1}'] = choice
+            q_json['Payload']['Choices'][str(indx+1)] = choice
         return q_json
 
     def update_text(q_json, speaker_turns, utter_id, turns_before, turns_after, individual=False):
@@ -135,14 +137,14 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, context_cond
     return q_set, q_exports
 
 # make n new blocks according to the survey_length
-def make_blocks(question_ids, basis_blocks, page_breaks=True):
+def make_blocks(question_ids, basis_blocks, page_breaks=True, blocks_before=3):
     """
     NOTE this doesn't make new blocks, it just adds questions to the basis_block (elements "Survey Blocks")
     """
     new_blocks = basis_blocks
     # block_elements = []
     block_elements = new_blocks['Payload'][0]['BlockElements'] # Start with the intro and page break in the template
-    for i in range(2,len(question_ids)+2): # Q1 is already loaded from template
+    for i in range(blocks_before, len(question_ids) + blocks_before + 1): # Q1,2 are already loaded from template
     # for q_id in question_ids:
         block_element = OrderedDict()
         block_element['Type'] = 'Question'
@@ -187,13 +189,11 @@ def main():
     # Args for experiment writing
     with open(URLS_PATH) as fs:
         experiment_urls = json.load(fs)
-    context_conditions = [((0,0), True), ((0,0), False), ((2,0), False), ((5,0), False), ((5,5), False)]
-    repeats = 2
+    # context_conditions = [((0,0), True), ((0,0), False), ((2,0), False), ((5,0), False), ((5,5), False)]
+    context_conditions = [((0,0), True), ((0,0), False), ((4,0), True), ((4,0), False), ((2,2), True), ((2,2), False)]
+    repeats = 3
 
     survey_structures = assign_surveys(list(experiment_urls.keys()), list(range(len(context_conditions))), repeats, write=False)
-
-    # import IPython
-    # IPython.embed()
 
     for survey_id, structure in survey_structures.items():
 
@@ -215,7 +215,7 @@ def main():
         question_ids = []
 
         # create counters to use when indexing optional lists
-        q_counter = 1 # qualtrics question numbering starts at 1 (and first 'question' is the intro)
+        q_counter = 2 # qualtrics question numbering starts at 1 (and first 'questions' are ethics + the intro)
 
         for exp_id, context_id in structure.items():
 
@@ -230,7 +230,6 @@ def main():
             question_ids.extend(ids)
             q_counter += len(new_qs)
 
-
         # survey_length is determined by number of questions created
         survey_length = q_counter
 
@@ -241,19 +240,22 @@ def main():
         survey_count = basis_survey_count
         survey_count['SecondaryAttribute'] = str(survey_length)
         # add all the created elements together
-        elements = [blocks, flow] + elements[2:9] + questions + [rs] # elements[8] is the intro
+        elements = [blocks, flow] + elements[2:10] + questions + [rs] # elements[8] is the ethics. elements[9] is intro
 
-        # import IPython
-        # IPython.embed()
 
         # Add the elements to the full survey
         # Not strictly necessary as we didn't do deep copies of elements
         out_json = basis_json
         out_json['SurveyElements'] = elements
 
+        # Save survey
         print(f'Generated survey {survey_id} with {survey_length} questions')
         with open(SAVE_TEMPLATE + f'_{survey_id}.qsf', 'w+') as outfile:
             json.dump(out_json, outfile, indent=4)
+
+        # Save participant assignments
+        with open(SAVE_TEMPLATE + f'_assignments.json', 'w+') as outfile:
+            json.dump(survey_structures, outfile)
 
 if __name__ == "__main__":
     main()
