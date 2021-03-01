@@ -9,7 +9,7 @@ import numpy as np
 """This file contains helper methods for making surveys in Qualtrics"""
 
 question_intro = '<div>Consider the following segment of a phone conversation (you will hear the sections in <u><b>underlined bold</b></u>):</div>'
-question_outro = '<div><u>Only one of the following segments is the <b>true</b> turn-response in this conversation. Assign each audio segment a score of how likely it is to be the <b>true</b> turn-response in this conversation</u></div>'
+question_outro = '<div><u>Only one of the following recordings is the <b>true</b> segment in this conversation. Assign each audio segment a score of how likely it is to be the <b>true</b> segment</u>.<br><br>(You can listen to the recordings as many times as you need to make your judgements.)</div>'
 
 def print_transcript(text):
     """
