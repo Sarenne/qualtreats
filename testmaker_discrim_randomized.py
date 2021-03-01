@@ -17,7 +17,7 @@ from discriminative_turn_utils import *
 ##### Define global params #####
 # Input and output json objects for qualtrics survey
 JSON_TEMPLATE = "template_discrim.json"
-SAVE_TEMPLATE = "output_survey_templates/test/discrim"
+SAVE_TEMPLATE = "output_survey_templates/test1/discrim"
 
 
 # audio templates should not be changed

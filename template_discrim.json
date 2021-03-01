@@ -37,6 +37,13 @@
             },
             {
               "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID2"
+            },
+            {
+              "Type": "Page Break"
             }
           ]
         },
@@ -94,7 +101,7 @@
         "SurveyTermination": "DefaultMessage",
         "Header": "",
         "Footer": "",
-        "ProgressBarDisplay": "None",
+        "ProgressBarDisplay": "Text",
         "PartialData": "+1 week",
         "ValidationMessage": "",
         "PreviousButton": " ← ",
@@ -161,13 +168,54 @@
       "Payload": null
     },
     {
-      "SurveyID": "SV_82GxylVdVIF3r7v",
+      "SurveyID": "SV_7aMCTPXerQYvV0q",
       "Element": "SQ",
       "PrimaryAttribute": "QID1",
+      "SecondaryAttribute": "Discriminative Turns - Information for ParticipantsWhat is this document?This document explains w...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<span style=\"font-size:24px;\">Discriminative Turns - Information for Participants</span><br>\n<span style=\"font-size:19px;\">What is this document?</span><br>\n<span style=\"font-size:13px;\">This document explains what kind of study we’re doing, what your rights are, and what will be done with your data. You should print this page for your records.</span><br>\n<br>\n<span style=\"font-size:19px;\">Nature of the study.</span><br>\n<span style=\"font-size:13px;\">You are invited to participate in a study which involves listening to some speech recordings carefully and answering questions about them. Once you finish, we may have also some questions about your experience (e.g., age, gender, language background). Your responses will be recorded. Your session should last for up to 20 minutes. You will be given full instructions shortly.</span><br><br>\n<span style=\"font-size:19px;\">Risks and benefits.</span><br>\n<span style=\"font-size:13px;\">There are no known risks to participation in this study. Other than the payment mentioned, there no tangible benefits to you, however, you will be contributing to our knowledge about language. Confidentiality and use of data. All the information we collect during the course of the research will be processed in accordance with Data Protection Law. In order to safeguard your privacy, we will never share personal information (like your name) with anyone outside the research team. Your data will be referred to by a unique participant number rather than by name). Please note that we will temporarily collect your worker ID to prevent repeat participation, however, we will never share this information with anyone outside the research team. We will store any personal data (i.e., worker ID) using the University of Edinburgh’s secure encrypted storage service. The anonymised data collected during this study will be used for research purposes.</span><br>\n<br>\n<span style=\"font-size:19px;\">What are my data protection rights?</span><br>\n<span style=\"font-size:13px;\">The University of Edinburgh is a Data Controller for the information you provide. You have the right to access information held about you. Your right of access can be exercised in accordance with Data Protection Law. You also have other rights including rights of correction, erasure and objection. For more details, including the right to lodge a complaint with the Information Commissioner’s Office, please visit www.ico.org.uk. Questions, comments and requests about your personal data can also be sent to the University Data Protection Officer at dpo@ed.ac.uk.</span><br>\n<br>\n<span style=\"font-size:19px;\">Voluntary participation and right to withdraw.</span><br>\n<span style=\"font-size:13px;\">Your participation is voluntary, and you may withdraw from the study at any time and for any reason. If you withdraw from the study during or after data gathering, we will delete your data and there is no penalty or loss of benefits to which you are otherwise entitled. You may stop at any time and for any reason simply by closing your browser window. If you stop participating, data collection will end, but data already collected will be retained. If you have any questions about what you’ve just read, please feel free to ask, or contact us later. You can contact us by email at c.lai@ed.ac.uk. This project has been approved by PPLS Ethics committee. If you have questions or comments regarding your rights as a participant, they can be contacted at 0131 650 4020 or ppls.ethics@ed.ac.uk.</span><br>\n<br>\n<span style=\"font-size:19px;\">By accepting this task, you consent to the following:</span><br>\n<span style=\"font-size:13px;\">1. I agree to participate in this study.<br>\n2. I confirm that I have read and understood how my data will be stored and used.<br>\n3. I understand that I have the right to terminate this session at any point. If I choose to withdraw after completing the study, my data will be deleted at that time.</span>",
+        "DataExportTag": "Q11",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Discriminative Turns - Information for ParticipantsWhat is this document?This document explains w...",
+        "Choices": {
+          "1": {
+            "Display": "I accept"
+          },
+          "2": {
+            "Display": "I do not accept"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID1"
+      }
+    },
+    {
+      "SurveyID": "SV_82GxylVdVIF3r7v",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID2",
       "SecondaryAttribute": "Discriminative Turns When we engage in conversation with another person, we make use of the words...",
       "TertiaryAttribute": null,
       "Payload": {
-        "QuestionText": "<div><span style=\"font-size:32px;\">Discriminative Turns</span></div>\n\n<p>When we engage in a conversation with another person, we make use of the words that are spoken as well as <em>the way in which they are said</em> to understand what someone means. The exact same phrase can be said in ways that mean completely different things.</p>\n<br>\n<span style=\"font-size:26px;\">Task</span>\n\n<div>\n<div>\n<div>\n<p>During each round of this task, you'll be presented with segments of conversations between 2 people. Each set of segments contains the <b>true</b> segment that occurred in a real phone conversation; the rest of have been synthetically generated.&nbsp;</p><p><br></p><p>Each segment consists of <em>at least</em> a turn and a response, and will be presented in either of the following formats:</p>\n\n<div class=\"chat\">\n<div class=\"mine messages\">\n<div class=\"message last\">The initial turn</div>\n</div>\n\n<div class=\"yours messages\">\n<div class=\"message last\">The response</div>\n</div>\n</div>\nOR\n\n<div class=\"chat\">\n<div class=\"yours messages\">\n<div class=\"message last\">The initial turn</div>\n</div>\n\n<div class=\"mine messages\">\n<div class=\"message last\">The response</div>\n</div>\n</div>\n\n<div><span class=\"Apple-converted-space\">&nbsp;</span></div>\n\n<div>&nbsp;</div>\n<span style=\"font-size:24px;\">Your task</span>\n\n<p style=\"margin-left: 40px;\">In each experiment, <span style=\"font-size:19px;\"><u><i>your task is to pick the <strong>true</strong> segment from the false ones by assigning each audio segment a score of how likely it is to be the <strong>true</strong> turn-response</i></u></span>, with scores ranging from 'very unlikely', to 'very likely'.<br>\n&nbsp;</p>\n\n<p>Along with the turn-response segments to choose between, you will receive a varying degree of additional information about the rest of the conversation which you can use to help make your decision.<span class=\"Apple-converted-space\">&nbsp;</span></p>\n&nbsp;</div>\n</div>\n</div>",
+        "QuestionText": "<div><span style=\"font-size:32px;\">Discriminative Turns</span></div>\n\n<p>When we engage in conversation with another person, we make use of the words that are spoken as well as <em>the way in which they are said</em> to understand what someone may mean. The exact same phrase can be said in ways that mean completely different things.</p>\n<br>\n<span style=\"font-size:26px;\">Task</span>\n\n<div>\n<div>\n<div>\n<p>During each round of this task, you will be presented with audio segments of conversations between 2 people. Each set of segments contains a <b>real</b> segment that occurred in an actual phone conversation; the rest of have been synthetically constructed.&nbsp;</p><p><br></p><p>Each segment consists of <em>at least</em> a turn and a response, and will be presented as:</p>\n\n<div class=\"chat\">\n<div class=\"mine messages\">\n<div class=\"message last\">The initial turn</div>\n</div>\n\n<div class=\"yours messages\">\n<div class=\"message last\">The response</div>\n</div>\n</div>\n<div><span class=\"Apple-converted-space\">&nbsp;</span></div>\n\n<div>&nbsp;</div>\n<span style=\"font-size:24px;\">Your task</span>\n\n<p style=\"margin-left: 40px;\">In each experiment, <span style=\"font-size:19px;\"><u><i>your task is to select the <strong>true</strong> segment from the false ones by assigning each audio segment a score of how likely it is to be the <strong>true</strong> segment</i></u></span>, with scores ranging from 'very unlikely', to 'very likely'.<br>\n&nbsp;</p>\n\n<p>Along with the audio segments to choose between, you will receive a varying degree of additional context from the rest of the conversation which you can use to help make your decision.<span class=\"Apple-converted-space\">&nbsp;</span></p>\n&nbsp;</div>\n</div>\n</div>",
         "DefaultChoices": false,
         "DataExportTag": "Q1",
         "QuestionType": "DB",
@@ -186,20 +234,20 @@
         "Language": [],
         "NextChoiceId": 9,
         "NextAnswerId": 1,
-        "QuestionID": "QID1"
+        "QuestionID": "QID2"
       }
     },
     {
       "SurveyID": "SV_82GxylVdVIF3r7v",
       "Element": "SQ",
-      "PrimaryAttribute": "QID2",
+      "PrimaryAttribute": "QID3",
       "SecondaryAttribute": "Score each of the following speech segments by how likely they are to be the true response in the conversation above ",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "Consider the conversation:\n\n\n<div style=\"text-align: left; width:500px\"><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">Speaker A: the initial tur</span><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">n</span></div> \n<div style=\"text-align: right; width:500px\"> <span style=\"text-align: right; color:#065B9A; font-size: 16pt\"> <b> Speaker B: the response </b> </span> </div>\n\n<div><br></div><div><br></div><div>Score each of the following speech segments by how likely they are to be the&nbsp;<em>true&nbsp;</em>response in the conversation above.</div>\n\n\n<em></em>",
         "DefaultChoices": false,
         "DataExportTag": "Q2.1",
-        "QuestionID": "QID2",
+        "QuestionID": "QID3",
         "QuestionType": "Matrix",
         "Selector": "Likert",
         "SubSelector": "SingleAnswer",
@@ -273,7 +321,12 @@
           "Private": false,
           "Hidden": false
         },
-        "QuestionText_Unsafe": "Consider the conversation:\n\n\n<div style=\"text-align: left; width:500px\"><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">Speaker A: the initial tur</span><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">n</span></div> \n<div style=\"text-align: right; width:500px\"> <span style=\"text-align: right; color:#065B9A; font-size: 16pt\"> <b> Speaker B: the response </b> </span> </div>\n\n<div><br></div><div><br></div><div>Score each of the following speech segments by how likely they are to be the&nbsp;<em>true&nbsp;</em>response in the conversation above.</div>\n\n\n<em></em>"
+        "QuestionText_Unsafe": "Consider the conversation:\n\n\n<div style=\"text-align: left; width:500px\"><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">Speaker A: the initial tur</span><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">n</span></div> \n<div style=\"text-align: right; width:500px\"> <span style=\"text-align: right; color:#065B9A; font-size: 16pt\"> <b> Speaker B: the response </b> </span> </div>\n\n<div><br></div><div><br></div><div>Score each of the following speech segments by how likely they are to be the&nbsp;<em>true&nbsp;</em>response in the conversation above.</div>\n\n\n<em></em>",
+        "Randomization": {
+          "Advanced": null,
+          "Type": "All",
+          "TotalRandSubset": ""
+        }
       }
     }
   ]
