@@ -8,8 +8,11 @@ import numpy as np
 
 """This file contains helper methods for making surveys in Qualtrics"""
 
-question_intro = '<div>Consider the following segment of a phone conversation (you will hear the sections in <u><b>underlined bold</b></u>):</div>'
-question_outro = '<div><u>Only one of the following recordings is the <b>true</b> segment in this conversation. Assign each audio segment a score of how likely it is to be the <b>true</b> segment</u>.<br><br>(You can listen to the recordings as many times as you need to make your judgements.)</div>'
+discrim_question_intro = '<div>Consider the following segment of a phone conversation (you will hear the sections in <u><b>underlined bold</b></u>):</div>'
+discrim_question_outro = '<div><u>Only one of the following recordings is the <b>true</b> segment in this conversation. Assign each audio segment a score of how likely it is to be the <b>true</b> segment</u>.<br><br>(You can listen to the recordings as many times as you need to make your judgements.)</div>'
+
+gender_question_intro = '<div>Consider the previous recordings that you just listened to. Please select the gender of the speaker who said: </div>'
+gender_question_outro = ''
 
 def print_transcript(text):
     """
@@ -74,8 +77,11 @@ def make_speaker_turns(conversation):
 
     return speaker_turns
 
+def gender_question_print(question_content, before_text=gender_question_intro, after_text=gender_question_outro):
+    """Print the full question text for Qualtrics, including intro + instructions"""
+    return before_text + question_content + after_text
 
-def question_print(question_content, before_text=question_intro, after_text=question_outro):
+def discrim_question_print(question_content, before_text=discrim_question_intro, after_text=discrim_question_outro):
     """Print the full question text for Qualtrics, including intro + instructions"""
     return before_text + question_content + after_text
 

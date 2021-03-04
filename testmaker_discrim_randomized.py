@@ -53,6 +53,21 @@ def get_play_button(url, n): # player n associates play button with a specific a
     with open(PLAY_BUTTON) as html_file:
         return Template(html_file.read()).substitute(url=url, player=n)
 
+def q_set_up(q_id, export_id, basis_question):
+    """Init a template and fill with generic attributes (survey ID) and basic question attributes (q ID)"""
+    # Get template
+    new_q = copy.deepcopy(basis_question)
+    # Update the survey ID
+    new_q['SurveyID'] = config.survey_id
+    # Update question ID and related fields
+    new_q['Payload'].update({'QuestionID' : f'QID{q_id}',
+                             'DataExportTag' : f'{export_id}',
+                             'QuestionDescription' : f'Q{q_id}',
+                             })
+    new_q.update({'PrimaryAttribute' : f'QID{q_id}',
+                  'SecondaryAttribute' : f'QID{q_id}'})
+    return new_q
+
 def make_discrim_question_set(q_counter, experiment_id, audio_urls, context_conditions, context_ids, basis_question):
     """
 
@@ -64,21 +79,6 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, context_cond
         contexts ():
         basis_question ():
     """
-
-    def q_set_up(q_id, export_id):
-        """Init a template and fill with generic attributes (survey ID) and basic question attributes (q ID)"""
-        # Get template
-        new_q = copy.deepcopy(basis_question)
-        # Update the survey ID
-        new_q['SurveyID'] = config.survey_id
-        # Update question ID and related fields
-        new_q['Payload'].update({'QuestionID' : f'QID{q_id}',
-                                 'DataExportTag' : f'{export_id}',
-                                 'QuestionDescription' : f'Q{q_id}',
-                                 })
-        new_q.update({'PrimaryAttribute' : f'QID{q_id}',
-                      'SecondaryAttribute' : f'QID{q_id}'})
-        return new_q
 
     def update_choices(q_json, audio_urls, individual=False):
         """Fill matrix with audio samples for a particular experiment. Return updated question template object"""
@@ -103,10 +103,9 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, context_cond
         """Fill in question text with the conversation context. Return updated question template object"""
 
         q_content = context_print(utter_id, speaker_turns, turns_before, turns_after, individual=individual)
-        q_text = question_print(q_content)
+        q_text = discrim_question_print(q_content)
         q_json['Payload'].update({'QuestionText': q_text})
         return q_json
-
 
     # Load the conversation and build speaker turns
     conversation = json.loads(requests.get(BASE_URL + experiment_id + '/conversation.json').text)
@@ -119,20 +118,58 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, context_cond
 
     for i, cntxt_id in enumerate(context_ids):
 
-        # import IPython
-        # IPython.embed()
-
         (before, after), indiv = context_conditions[cntxt_id]
 
         # Generate a discrim turn experiment
         q_export = f'C{cntxt_id}_' + experiment_id
-        new_q = q_set_up(q_counter + i + 1, q_export)
+        new_q = q_set_up(q_counter + i + 1, q_export, basis_question)
 
         # Fill template with audio choices and text
         new_q = update_choices(new_q, audio_urls, individual=indiv)
         new_q = update_text(new_q, speaker_turns, utter_id, before, after, individual=indiv)
         q_set.append(new_q)
         q_exports.append(q_export)
+
+    return q_set, q_exports
+
+
+def make_gender_question(q_counter, experiment_id, basis_question):
+    """
+
+    Args
+        q_counter (int): to track the question ids for qualtrics "QuestionID" attribute (used as the ID of the first
+            question round in discrim set)
+        experiment_id (str): the dir_name of the experiment (identifier of conv_id, utter_d, seeds, correct_indx)
+        audio_urls (list): list of str urls
+        contexts ():
+        basis_question ():
+    """
+
+    def update_text(q_json, speaker_turns, utter_id):
+        """Fill in question text with the conversation context. Return updated question template object"""
+
+        q_content = context_print(utter_id, speaker_turns, 0, -1)
+        q_text = gender_question_print(q_content)
+        q_json['Payload'].update({'QuestionText': q_text})
+        return q_json
+
+    # Load the conversation and build speaker turns
+    conversation = json.loads(requests.get(BASE_URL + experiment_id + '/conversation.json').text)
+    utter_id = int(experiment_id.split("_")[-4])
+    speaker_turns = make_speaker_turns(conversation)
+
+    # Store the question set  (NOTE should this be a list?)
+    q_set = []
+    q_exports = []
+
+    # Generate a gender check question
+    q_export = f'G_' + experiment_id
+    new_q = q_set_up(q_counter + 1, q_export, basis_question)
+
+    # Fill template with audio choices and text
+    new_q = update_text(new_q, speaker_turns, utter_id)
+    q_set.append(new_q)
+    q_exports.append(q_export)
 
     return q_set, q_exports
 
@@ -190,10 +227,17 @@ def main():
     with open(URLS_PATH) as fs:
         experiment_urls = json.load(fs)
     # context_conditions = [((0,0), True), ((0,0), False), ((2,0), False), ((5,0), False), ((5,5), False)]
-    context_conditions = [((0,0), True), ((0,0), False), ((4,0), True), ((4,0), False), ((2,2), True), ((2,2), False)]
+    context_conditions = [((0,0), True), ((0,0), False),
+                          ((3,0), True), ((3,0), False),
+                          ((6,0), True), ((6,0), False),
+                          ((3,3), True), ((3,3), False),
+                          ]
     repeats = 3
 
     survey_structures = assign_surveys(list(experiment_urls.keys()), list(range(len(context_conditions))), repeats, write=False)
+
+    import IPython
+    IPython.embed()
 
     for survey_id, structure in survey_structures.items():
 
@@ -229,6 +273,17 @@ def main():
             questions.extend(new_qs)
             question_ids.extend(ids)
             q_counter += len(new_qs)
+
+            context_indiv = context_conditions[context_id][1]
+            if not(context_indiv): # NOTE CAN ONLY DO THIS WHEN THE CONTEXT CONDITION IS PROSODY (not indiv)
+                new_qs, ids = make_gender_question(q_counter=q_counter+1,
+                                                   experiment_id=exp_id,
+                                                   basis_question=elements[-2]
+                                                  )
+                questions.extend(new_qs)
+                question_ids.extend(ids)
+                q_counter += len(new_qs)
+
 
         # survey_length is determined by number of questions created
         survey_length = q_counter

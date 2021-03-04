@@ -238,16 +238,57 @@
       }
     },
     {
-      "SurveyID": "SV_82GxylVdVIF3r7v",
+      "SurveyID": "SV_bfk5B77i29eRUTY",
       "Element": "SQ",
       "PrimaryAttribute": "QID3",
+      "SecondaryAttribute": "Consider the recordings that you just listened to. What was the gender of the speaker wh...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<p>Consider the recordings that you just listened to. What was the gender of the speaker who said “blahblah”?</p>",
+        "DataExportTag": "QID3",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Consider the recordings that you just listened to. What was the gender of the speaker wh...",
+        "Choices": {
+          "1": {
+            "Display": "Male"
+          },
+          "2": {
+            "Display": "Female"
+          }
+        },
+        "ChoiceOrder": [
+          1,
+          2
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 3,
+        "NextAnswerId": 1,
+        "QuestionID": "QID18"
+      }
+    },
+    {
+      "SurveyID": "SV_82GxylVdVIF3r7v",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID4",
       "SecondaryAttribute": "Score each of the following speech segments by how likely they are to be the true response in the conversation above ",
       "TertiaryAttribute": null,
       "Payload": {
         "QuestionText": "Consider the conversation:\n\n\n<div style=\"text-align: left; width:500px\"><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">Speaker A: the initial tur</span><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">n</span></div> \n<div style=\"text-align: right; width:500px\"> <span style=\"text-align: right; color:#065B9A; font-size: 16pt\"> <b> Speaker B: the response </b> </span> </div>\n\n<div><br></div><div><br></div><div>Score each of the following speech segments by how likely they are to be the&nbsp;<em>true&nbsp;</em>response in the conversation above.</div>\n\n\n<em></em>",
         "DefaultChoices": false,
         "DataExportTag": "Q2.1",
-        "QuestionID": "QID3",
+        "QuestionID": "QID4",
         "QuestionType": "Matrix",
         "Selector": "Likert",
         "SubSelector": "SingleAnswer",
