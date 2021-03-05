@@ -1,0 +1,402 @@
+{
+  "SurveyEntry": {
+    "SurveyID": "SV_4TLSPrwNIjymdh3",
+    "SurveyName": "Prolific Discriminative Turns",
+    "SurveyDescription": null,
+    "SurveyOwnerID": "UR_a3H2TagYzArvaom",
+    "SurveyBrandID": "edinburghinformatics",
+    "DivisionID": null,
+    "SurveyLanguage": "EN",
+    "SurveyActiveResponseSet": "RS_4PLpTIPvV3hXg90",
+    "SurveyStatus": "Inactive",
+    "SurveyStartDate": "0000-00-00 00:00:00",
+    "SurveyExpirationDate": "0000-00-00 00:00:00",
+    "SurveyCreationDate": "2021-03-04 16:52:48",
+    "CreatorID": "UR_a3H2TagYzArvaom",
+    "LastModified": "2021-03-05 04:47:48",
+    "LastAccessed": "0000-00-00 00:00:00",
+    "LastActivated": "0000-00-00 00:00:00",
+    "Deleted": null
+  },
+  "SurveyElements": [
+    {
+      "SurveyID": "SV_0PoZHJ3HugCyoui",
+      "Element": "BL",
+      "PrimaryAttribute": "Survey Blocks",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": [
+        {
+          "Type": "Default",
+          "Description": "Intro Block",
+          "ID": "BL_1",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID1"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID2"
+            },
+            {
+              "Type": "Page Break"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Collapsed"
+          }
+        },
+        {
+          "Type": "Trash",
+          "Description": "Trash / Unused Questions",
+          "ID": "BL_b9JrFiAUwvf53RH",
+          "BlockElements": []
+        }
+      ]
+    },
+    {
+      "SurveyID": "SV_0PoZHJ3HugCyoui",
+      "Element": "FL",
+      "PrimaryAttribute": "Survey Flow",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "Type": "Root",
+        "FlowID": "FL_1",
+        "Flow": [
+          {
+            "Type": "Block",
+            "ID": "BL_1",
+            "FlowID": "FL_2",
+            "Autofill": []
+          },
+          {
+            "Type": "BlockRandomizer",
+            "FlowID": "FL_3",
+            "SubSet": "3",
+            "EvenPresentation": true,
+            "Flow": [
+              {
+                "Type": "Standard",
+                "ID": "BL_0JTAnrSQCcZOo5M",
+                "FlowID": "FL_4",
+                "Autofill": []
+              }
+            ]
+          }
+        ],
+        "Properties": {
+          "Count": 4,
+          "RemovedFieldsets": []
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_82GxylVdVIF3r7v",
+      "Element": "RS",
+      "PrimaryAttribute": "RS_6MeAvL2aPM8PFI1",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_0PoZHJ3HugCyoui",
+      "Element": "SO",
+      "PrimaryAttribute": "Survey Options",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "BackButton": "false",
+        "SaveAndContinue": "true",
+        "SurveyProtection": "PublicSurvey",
+        "BallotBoxStuffingPrevention": "false",
+        "NoIndex": "Yes",
+        "SecureResponseFiles": "true",
+        "SurveyExpiration": "None",
+        "SurveyTermination": "DefaultMessage",
+        "Header": "",
+        "Footer": "",
+        "ProgressBarDisplay": "Text",
+        "PartialData": "+1 week",
+        "ValidationMessage": "",
+        "PreviousButton": " ← ",
+        "NextButton": " → ",
+        "SurveyTitle": "Online Survey Software | Qualtrics Survey Solutions",
+        "SkinLibrary": "edinburghinformatics",
+        "SkinType": "templated",
+        "Skin": {
+          "brandingId": null,
+          "templateId": "*2014",
+          "overrides": null
+        },
+        "NewScoring": 1,
+        "CustomStyles": {
+          "customCSS": "body {\n  font-family: helvetica;\n  display: flex ;\n  flex-direction: column;\n  align-items: center;\n}\n\n.chat {\n  width: 600px;\n  border: solaid 1px #EEE;\n  display: flex;\n  flex-direction: column;\n  padding: 10px;\n  margin-left: auto;\n  margin-right: auto\n}\n\n.messages {\n  margin-top: 1px;\n  display: flex;\n  flex-direction: column;\n}\n\n.message {\n  border-radius: 20px;\n  padding: 8px 15px;\n  margin-top: 5px;\n  margin-bottom: 5px;\n  display: inline-block;\n}\n\n.yours {\n  align-items: flex-start;\n}\n\n.yours .message {\n  margin-right: 25%;\n  background-color: #eee;\n  position: relative;\n}\n\n.yours .message.last:before {\n  content: \"\";\n  position: absolute;\n  z-index: 0;\n  bottom: 0;\n  left: -7px;\n  height: 20px;\n  width: 20px;\n  background: #eee;\n  border-bottom-right-radius: 15px;\n}\n.yours .message.last:after {\n  content: \"\";\n  position: absolute;\n  z-index: 1;\n  bottom: 0;\n  left: -10px;\n  width: 10px;\n  height: 20px;\n  background: white;\n  border-bottom-right-radius: 10px;\n}\n\n.mine {\n  align-items: flex-end;\n}\n\n.mine .message {\n  color: white;\n  margin-left: 25%;\n  background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);\n  background-attachment: fixed;\n  position: relative;\n}\n\n.mine .message.last:before {\n  content: \"\";\n  position: absolute;\n  z-index: 0;\n  bottom: 0;\n  right: -8px;\n  height: 20px;\n  width: 20px;\n  background: linear-gradient(to bottom, #00D0EA 0%, #0085D1 100%);\n  background-attachment: fixed;\n  border-bottom-left-radius: 15px;\n}\n\n.mine .message.last:after {\n  content: \"\";\n  position: absolute;\n  z-index: 1;\n  bottom: 0;\n  right: -10px;\n  width: 10px;\n  height: 20px;\n  background: white;\n  border-bottom-left-radius: 10px;\n}\n.dots {\n  align-items: center;\n}\n\n.dots .message {\n  margin-right: 0%;\n  background-color: #eee;\n  position: relative;\n}\n\n.dots .message :before {\n  content: \"\";\n  position: absolute;\n  z-index: 0;\n  bottom: 0;\n  left: -7px;\n  height: 20px;\n  width: 20px;\n  background: #eee;\n  border-bottom-right-radius: 15px;\n}\n.dots .message:after {\n  content: \"\";\n  position: absolute;\n  z-index: 1;\n  bottom: 0;\n  left: -10px;\n  width: 10px;\n  height: 20px;\n  background: white;\n  border-bottom-right-radius: 10px;\n}"
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_0PoZHJ3HugCyoui",
+      "Element": "SCO",
+      "PrimaryAttribute": "Scoring",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "ScoringCategories": [],
+        "ScoringCategoryGroups": [],
+        "ScoringSummaryCategory": null,
+        "ScoringSummaryAfterQuestions": 0,
+        "ScoringSummaryAfterSurvey": 0,
+        "DefaultScoringCategory": null,
+        "AutoScoringCategory": null
+      }
+    },
+    {
+      "SurveyID": "SV_0PoZHJ3HugCyoui",
+      "Element": "PROJ",
+      "PrimaryAttribute": "CORE",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": "1.1.0",
+      "Payload": {
+        "ProjectCategory": "CORE",
+        "SchemaVersion": "1.1.0"
+      }
+    },
+    {
+      "SurveyID": "SV_0PoZHJ3HugCyoui",
+      "Element": "STAT",
+      "PrimaryAttribute": "Survey Statistics",
+      "SecondaryAttribute": null,
+      "TertiaryAttribute": null,
+      "Payload": {
+        "MobileCompatible": true,
+        "ID": "Survey Statistics"
+      }
+    },
+    {
+      "SurveyID": "SV_0PoZHJ3HugCyoui",
+      "Element": "QC",
+      "PrimaryAttribute": "Survey Question Count",
+      "SecondaryAttribute": "22",
+      "TertiaryAttribute": null,
+      "Payload": null
+    },
+    {
+      "SurveyID": "SV_0PoZHJ3HugCyoui",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID1",
+      "SecondaryAttribute": "Discriminative Turns - Information for ParticipantsWhat is this document?This document explains w...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<span style=\"font-size:24px;\">Discriminative Turns - Information for Participants</span><br>\n<span style=\"font-size:19px;\">What is this document?</span><br>\n<span style=\"font-size:13px;\">This document explains what kind of study we’re doing, what your rights are, and what will be done with your data. You should print this page for your records.</span><br>\n<br>\n<span style=\"font-size:19px;\">Nature of the study.</span><br>\n<span style=\"font-size:13px;\">You are invited to participate in a study which involves listening to some speech recordings carefully and answering questions about them. Once you finish, we may have also some questions about your experience (e.g., age, gender, language background). Your responses will be recorded. Your session should last for up to 20 minutes. You will be given full instructions shortly.</span><br><br>\n<span style=\"font-size:19px;\">Risks and benefits.</span><br>\n<span style=\"font-size:13px;\">There are no known risks to participation in this study. Other than the payment mentioned, there no tangible benefits to you, however, you will be contributing to our knowledge about language. Confidentiality and use of data. All the information we collect during the course of the research will be processed in accordance with Data Protection Law. In order to safeguard your privacy, we will never share personal information (like your name) with anyone outside the research team. Your data will be referred to by a unique participant number rather than by name). Please note that we will temporarily collect your worker ID to prevent repeat participation, however, we will never share this information with anyone outside the research team. We will store any personal data (i.e., worker ID) using the University of Edinburgh’s secure encrypted storage service. The anonymised data collected during this study will be used for research purposes.</span><br>\n<br>\n<span style=\"font-size:19px;\">What are my data protection rights?</span><br>\n<span style=\"font-size:13px;\">The University of Edinburgh is a Data Controller for the information you provide. You have the right to access information held about you. Your right of access can be exercised in accordance with Data Protection Law. You also have other rights including rights of correction, erasure and objection. For more details, including the right to lodge a complaint with the Information Commissioner’s Office, please visit www.ico.org.uk. Questions, comments and requests about your personal data can also be sent to the University Data Protection Officer at dpo@ed.ac.uk.</span><br>\n<br>\n<span style=\"font-size:19px;\">Voluntary participation and right to withdraw.</span><br>\n<span style=\"font-size:13px;\">Your participation is voluntary, and you may withdraw from the study at any time and for any reason. If you withdraw from the study during or after data gathering, we will delete your data and there is no penalty or loss of benefits to which you are otherwise entitled. You may stop at any time and for any reason simply by closing your browser window. If you stop participating, data collection will end, but data already collected will be retained. If you have any questions about what you’ve just read, please feel free to ask, or contact us later. You can contact us by email at c.lai@ed.ac.uk. This project has been approved by PPLS Ethics committee. If you have questions or comments regarding your rights as a participant, they can be contacted at 0131 650 4020 or ppls.ethics@ed.ac.uk.</span><br>\n<br>\n<span style=\"font-size:19px;\">By accepting this task, you consent to the following:</span><br>\n<span style=\"font-size:13px;\">1. I agree to participate in this study.<br>\n2. I confirm that I have read and understood how my data will be stored and used.<br>\n3. I understand that I have the right to terminate this session at any point. If I choose to withdraw after completing the study, my data will be deleted at that time.</span>",
+        "DataExportTag": "Q1",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Discriminative Turns - Information for ParticipantsWhat is this document?This document explains w...",
+        "Choices": {
+          "1": {
+            "Display": "I accept"
+          },
+          "2": {
+            "Display": "I do not accept"
+          }
+        },
+        "ChoiceOrder": [
+          "1",
+          "2"
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 4,
+        "NextAnswerId": 1,
+        "QuestionID": "QID1",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_0PoZHJ3HugCyoui",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID2",
+      "SecondaryAttribute": "Discriminative Turns When we engage in conversation with another person, we make use of the words...",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<div><span style=\"font-size:32px;\">Discriminative Turns</span></div>\n\n<p>When we engage in conversation with another person, we make use of the words that are spoken as well as <em>the way in which they are said</em> to understand what someone may mean. The exact same phrase can be said in ways that mean completely different things.</p>\n<br>\n<span style=\"font-size:26px;\">Task</span>\n\n<div>\n<div>\n<div>\n<p>During each round of this task, you will be presented with audio segments of conversations between 2 people. Each set of segments contains a <b>real</b> segment that occurred in an actual phone conversation; the rest of have been synthetically constructed.&nbsp;</p><p><br></p><p>Each segment consists of <em>at least</em> a turn and a response, and will be presented as:</p>\n\n<div class=\"chat\">\n<div class=\"mine messages\">\n<div class=\"message last\">The initial turn</div>\n</div>\n\n<div class=\"yours messages\">\n<div class=\"message last\">The response</div>\n</div>\n</div>\n<div><span class=\"Apple-converted-space\">&nbsp;</span></div>\n\n<div>&nbsp;</div>\n<span style=\"font-size:24px;\">Your task</span>\n\n<p style=\"margin-left: 40px;\">In each experiment, <span style=\"font-size:19px;\"><u><i>your task is to select the <strong>true</strong> segment from the false ones by assigning each audio segment a score of how likely it is to be the <strong>true</strong> segment</i></u></span>, with scores ranging from 'very unlikely', to 'very likely'.<br>\n&nbsp;</p>\n\n<p>Along with the audio segments to choose between, you will receive a varying degree of additional context from the rest of the conversation which you can use to help make your decision.<span class=\"Apple-converted-space\">&nbsp;</span></p>\n&nbsp;</div>\n</div>\n</div>",
+        "DefaultChoices": false,
+        "DataExportTag": "Q2",
+        "QuestionType": "DB",
+        "Selector": "TB",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Discriminative Turns When we engage in conversation with another person, we make use of the words...",
+        "ChoiceOrder": [],
+        "Validation": {
+          "Settings": {
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 9,
+        "NextAnswerId": 1,
+        "QuestionID": "QID2",
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_0PoZHJ3HugCyoui",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID8",
+      "SecondaryAttribute": "Q8",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<div>Consider the previous recordings that you just listened to. Please select the gender of the speaker who said: </div><div class=\"chat\"><div class=\"dots messages\"><div class=\"message\"> .  .  . </div></div><div class=\"mine messages\"><div class=\"message\"><u><b>[noise]</b></u></div><div class=\"message last\"><u><b>but well i just i i'm glad we've learned i'm sorry we had the experience of Vietnam</b></u></div></div><div class=\"dots messages\"><div class=\"message\"> .  .  . </div></div></div>",
+        "DataExportTag": "G_sw02617_121_6_6_3",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Q8",
+        "Choices": {
+          "1": {
+            "Display": "Male"
+          },
+          "2": {
+            "Display": "Female"
+          }
+        },
+        "ChoiceOrder": [
+          1,
+          2
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 3,
+        "NextAnswerId": 1,
+        "QuestionID": "QID8"
+      }
+    },
+    {
+      "SurveyID": "SV_0PoZHJ3HugCyoui",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID9",
+      "SecondaryAttribute": "Q9",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<div>Consider the following segment of a phone conversation (you will hear the sections in <u><b>underlined bold</b></u>):</div><div class=\"chat\"><div class=\"dots messages\"><div class=\"message\"> .  .  . </div></div><div class=\"mine messages\"><div class=\"message last\">yes i do i keep uh i have an American Express and a Visa card that i keep you know kind of for emergency purposes and i have you know i use a gasoline credit card which i you know pay off every every month</div></div> <div class=\"yours messages\"><div class=\"message last\">um-hum</div></div><div class=\"mine messages\"><div class=\"message last\">but i've i've gotten rid of all of the credit cards you know that i possibly could and my balances are practically zero on the ones that i have</div></div> <div class=\"yours messages\"><div class=\"message last\">okay</div></div><div class=\"mine messages\"><div class=\"message last\">especially since you know it's no longer after this year or after tax year nineteen ninety there's there's no deductions for you know credit card interest that you pay so it's a</div></div> <div class=\"yours messages\"><div class=\"message last\">um-hum</div></div><div class=\"mine messages\"><div class=\"message last\">you know gosh credit cards run what anywhere from up to eighteen nineteen percent i guess</div></div> <div class=\"yours messages\"><div class=\"message last\"><u><b>yeah</b></u></div></div><div class=\"dots messages\"><div class=\"message\"> .  .  . </div></div></div><div><u>Only one of the following recordings is the <b>true</b> segment in this conversation. Assign each audio segment a score of how likely it is to be the <b>true</b> segment</u>.<br><br>(You can listen to the recordings as many times as you need to make your judgements.)</div>",
+        "DefaultChoices": false,
+        "DataExportTag": "C4_sw02301_10_9_7_1",
+        "QuestionID": "QID9",
+        "QuestionType": "Matrix",
+        "Selector": "Likert",
+        "SubSelector": "SingleAnswer",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "TextPosition": "inline",
+          "ChoiceColumnWidth": 25,
+          "RepeatHeaders": "none",
+          "WhiteSpace": "OFF",
+          "MobileFirst": true,
+          "ChoiceColumnWidthPixels": 296
+        },
+        "QuestionDescription": "Q9",
+        "Choices": {
+          "1": {
+            "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_pilot10/sw02301_10_9_7_1/0_sw04059_83_indv.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_pilot10/sw02301_10_9_7_1/0_sw04059_83_indv.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+          },
+          "2": {
+            "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_pilot10/sw02301_10_9_7_1/1_sw02301_10_indv.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_pilot10/sw02301_10_9_7_1/1_sw02301_10_indv.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+          },
+          "3": {
+            "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_pilot10/sw02301_10_9_7_1/2_sw02778_128_indv.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_pilot10/sw02301_10_9_7_1/2_sw02778_128_indv.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+          },
+          "4": {
+            "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_pilot10/sw02301_10_9_7_1/3_sw04071_60_indv.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_pilot10/sw02301_10_9_7_1/3_sw04071_60_indv.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+          },
+          "5": {
+            "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_pilot10/sw02301_10_9_7_1/4_sw03407_30_indv.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_pilot10/sw02301_10_9_7_1/4_sw03407_30_indv.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+          }
+        },
+        "ChoiceOrder": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 11,
+        "NextAnswerId": 7,
+        "Answers": {
+          "1": {
+            "Display": "Very unlikely"
+          },
+          "2": {
+            "Display": "Somewhat Unlikely"
+          },
+          "3": {
+            "Display": "Somewhat likely"
+          },
+          "4": {
+            "Display": "Very likely"
+          }
+        },
+        "AnswerOrder": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "ChoiceDataExportTags": false,
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "QuestionText_Unsafe": "Consider the conversation:\n\n\n<div style=\"text-align: left; width:500px\"><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">Speaker A: the initial tur</span><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">n</span></div> \n<div style=\"text-align: right; width:500px\"> <span style=\"text-align: right; color:#065B9A; font-size: 16pt\"> <b> Speaker B: the response </b> </span> </div>\n\n<div><br></div><div><br></div><div>Score each of the following speech segments by how likely they are to be the&nbsp;<em>true&nbsp;</em>response in the conversation above.</div>\n\n\n<em></em>",
+        "Randomization": {
+          "Advanced": null,
+          "Type": "All",
+          "TotalRandSubset": ""
+        }
+      }
+    }
+  ]
+}
