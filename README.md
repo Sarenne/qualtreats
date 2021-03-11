@@ -23,14 +23,13 @@ Once it’s there, it can be accessed through the [browser](https://groups.inf.e
 4. Update the path of the url JSON file in the `testmaker_discrim_blocks.py` script and run. This will generate a `.qsf` file which can be imported into Qualtrics.
 
 5. (OPTION) For the full experiment, I am adding a question at the beginning and end of all surveys to ensure that all participants are asked atleast 2 gender check questions.  This is being done manually by 
-  a) moving all samples + 2 to `datawww`, 
-  b) generating the set of ALL urls,
-  c) generating a survey from them,
-  d) copying 2 questions manually to Qualtrics,
-  e) moving those files from datawww and from local dir,
-  f) generating the urls again, 
-  g) generating the real surveys,
-  h) manually adding the 2 questions to each survey (add as a block at the beginning and end, and update the survey flow)
+  * moving all generated samples + 2 to `datawww`, 
+  * generating the set of ALL urls,
+  * generating a survey from them,
+  * copy 2 questions manually into the template (`{qid3, qid4, qid5, qid6}`),
+  * moving those files from `datawww` to `/qualtrics_set_swb/`,
+  * generating the urls again, 
+  * generating the real surveys,
 
 -----------
 # Background
