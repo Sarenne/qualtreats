@@ -29,10 +29,10 @@ PLAY_BUTTON = "play_button.html"
 # Where data is stored
 # BASE_PATH ='/group/project/cstr3/html/sarenne/test_qualtrics/' # where generated experiment datas are stored
 # BASE_URL = 'https://groups.inf.ed.ac.uk/cstr3/sarenne/test_qualtrics/'
-BASE_EXT = 'sarenne/qualtrics_full/'
+BASE_EXT = 'sarenne/qualtrics_swb/'
 BASE_PATH = f'/afs/inf.ed.ac.uk/group/cstr/datawww/{BASE_EXT}'
 BASE_URL = f'https://data.cstr.ed.ac.uk/{BASE_EXT}'
-URLS_PATH = 'discrim_turn_resources/urls.json'
+URLS_PATH = 'discrim_turn_resources/urls_50.json'
 
 ##### Define global methods #####
 # load JSON template from file
@@ -232,16 +232,16 @@ def flow_set_up(block_id, flow_id):
     flow_element['Autofill'] = []
     return flow_element
 
-def make_flow(block_ids, basis_flow, flow_id_before=4):
+def make_flow(block_ids, basis_flow, flow_id_before=5):
     """TODO template flow should have the BlockRandomizer in it already to be added to."""
     new_flow = basis_flow # "Survey Blocks"
-    flow_elements = new_flow['Payload'] # TODO just have the intro block in the template (the payload list)
+    flow_elements = new_flow['Payload'] # TODO just have the intro block + start qs + end qs in the template (the payload list)
     randomizer_flow = []
     for i, block_id in enumerate(block_ids):
         flow_element = flow_set_up(block_id, i + flow_id_before)
         randomizer_flow.append(flow_element)
 
-    new_flow['Payload']['Flow'][1]['Flow'] = randomizer_flow
+    new_flow['Payload']['Flow'][2]['Flow'] = randomizer_flow # update the randomizerblock flow
     return new_flow
 
 # sets the survey ID for any object which needs it
@@ -285,7 +285,13 @@ def main():
                           ((3,3), True), ((3,3), False),
                           ]
 
-    survey_structures = assign_surveys(list(experiment_urls.keys()), list(range(len(context_conditions))), REPEATS, write=False)
+    assign_seed = 0
+
+    survey_structures = assign_surveys(list(experiment_urls.keys()),
+                                       list(range(len(context_conditions))),
+                                       REPEATS,
+                                       write=False,
+                                       seed=assign_seed)
     #
     import IPython
     IPython.embed()
@@ -310,13 +316,13 @@ def main():
         question_ids = []
         block_ids = {}
         # create counters to use when indexing optional lists
-        q_counter = 2 # qualtrics question numbering starts at 1 (and first 'questions' are ethics + the intro)
+        q_counter = 6 # qualtrics question numbering starts at 1 (and first 'questions' are ethics + the intro + start and stop (discrim + gender question))
 
         for i, (exp_id, context_id) in enumerate(structure.items()):
 
             quest_ids = []
 
-            new_qs, ids = make_discrim_question_set(q_counter=q_counter+1,
+            new_qs, ids = make_discrim_question_set(q_counter=q_counter,
                                                     experiment_id=exp_id,
                                                     audio_urls=experiment_urls[exp_id],
                                                     context_conditions=context_conditions,
@@ -332,7 +338,7 @@ def main():
             has_prosody = not(context_conditions[context_id][1])
             has_gender = exp_id[-3] in ['M', 'F']
             if has_prosody and has_gender:
-                new_qs, ids = make_gender_question(q_counter=q_counter+1,
+                new_qs, ids = make_gender_question(q_counter=q_counter,
                                                    experiment_id=exp_id,
                                                    basis_question=elements[-2]
                                                   )
@@ -341,7 +347,7 @@ def main():
                 quest_ids.extend(ids)
                 q_counter += len(new_qs)
 
-            block_ids[f"BL_{i + 2}"] = quest_ids # index from 2, as first block is the intro block
+            block_ids[f"BL_{i + 4}"] = quest_ids # index from 3, as first block is the intro block + start q block + end q block
             # print(block_ids)
 
         # survey_length is determined by number of questions created
@@ -351,7 +357,7 @@ def main():
         blocks = make_blocks(block_ids, basis_blocks)
         flow = make_flow(block_ids, basis_flow)
         flow['Payload']['Properties']['Count'] = survey_length # TODO not sure if this is num questions or num flow elements (same as survey_count), otherwise update it in make flow
-        flow['Payload']['Flow'][1]['SubSet'] = NUM_QUESTIONS
+        flow['Payload']['Flow'][2]['SubSet'] = NUM_QUESTIONS
 
         # import IPython
         # IPython.embed()
@@ -359,7 +365,7 @@ def main():
         survey_count = basis_survey_count
         survey_count['SecondaryAttribute'] = str(survey_length)
         # add all the created elements together
-        out_elements = [blocks, flow] + elements[2:10] + questions  # elements[8] is the ethics. elements[9] is intro
+        out_elements = [blocks, flow] + elements[2:14] + questions  # elements[8] is the ethics. elements[9] is intro
 
         # Add the elements to the full survey
         # Not strictly necessary as we didn't do deep copies of elements
