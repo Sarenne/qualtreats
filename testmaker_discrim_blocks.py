@@ -17,10 +17,10 @@ from discriminative_turn_utils import *
 ##### Define global params #####
 # Input and output json objects for qualtrics survey
 JSON_TEMPLATE = "template_blocks.json"
-SAVE_TEMPLATE = "output_survey_templates/blocks/blocks"
+SAVE_TEMPLATE = "output_survey_templates/full_swb/blocks"
 
-NUM_QUESTIONS = 3
-
+NUM_QUESTIONS = 20
+REPEATS = 1
 
 # audio templates should not be changed
 AUDIO_HTML_TEMPLATE = "audio_template.html"
@@ -29,7 +29,7 @@ PLAY_BUTTON = "play_button.html"
 # Where data is stored
 # BASE_PATH ='/group/project/cstr3/html/sarenne/test_qualtrics/' # where generated experiment datas are stored
 # BASE_URL = 'https://groups.inf.ed.ac.uk/cstr3/sarenne/test_qualtrics/'
-BASE_EXT = 'sarenne/qualtrics_pilot10/'
+BASE_EXT = 'sarenne/qualtrics_full/'
 BASE_PATH = f'/afs/inf.ed.ac.uk/group/cstr/datawww/{BASE_EXT}'
 BASE_URL = f'https://data.cstr.ed.ac.uk/{BASE_EXT}'
 URLS_PATH = 'discrim_turn_resources/urls.json'
@@ -112,9 +112,13 @@ def make_discrim_question_set(q_counter, experiment_id, audio_urls, context_cond
     # Load the conversation and build speaker turns
     # conversation = json.loads(requests.get(BASE_URL + experiment_id + '/conversation.json').text)
     # conversation = requests.get(BASE_URL + experiment_id + '/conversation.json').json()
+
     with open(BASE_PATH + experiment_id + '/conversation.json') as jfs:
         conversation = json.load(jfs)
-    utter_id = int(experiment_id.split("_")[-4])
+    if experiment_id[-3] in ['M', 'F']: # check for gender in string
+        utter_id = int(experiment_id.split("_")[-5])
+    else:
+        utter_id = int(experiment_id.split("_")[-4])
     speaker_turns = make_speaker_turns(conversation)
 
     # Store the question set  (NOTE should this be a list?)
@@ -163,7 +167,7 @@ def make_gender_question(q_counter, experiment_id, basis_question):
     # conversation = requests.get(BASE_URL + experiment_id + '/conversation.json').json()
     with open(BASE_PATH + experiment_id + '/conversation.json') as jfs:
         conversation = json.load(jfs)
-    utter_id = int(experiment_id.split("_")[-4])
+    utter_id = int(experiment_id.split("_")[-5]) # check for gender in string
     speaker_turns = make_speaker_turns(conversation)
 
     # Store the question set  (NOTE should this be a list?)
@@ -280,12 +284,11 @@ def main():
                           ((6,0), True), ((6,0), False),
                           ((3,3), True), ((3,3), False),
                           ]
-    repeats = 2
 
-    survey_structures = assign_surveys(list(experiment_urls.keys()), list(range(len(context_conditions))), repeats, write=False)
+    survey_structures = assign_surveys(list(experiment_urls.keys()), list(range(len(context_conditions))), REPEATS, write=False)
     #
-    # import IPython
-    # IPython.embed()
+    import IPython
+    IPython.embed()
 
     for survey_id, structure in survey_structures.items():
 
@@ -325,8 +328,10 @@ def main():
             quest_ids.extend(ids)
             q_counter += len(new_qs)
 
-            context_indiv = context_conditions[context_id][1]
-            if not(context_indiv): # NOTE CAN ONLY DO THIS WHEN THE CONTEXT CONDITION IS PROSODY (not indiv)
+            # Generate a gender question IF not indiv context condition and there is gender information (ie, gender is in the experiment ID)
+            has_prosody = not(context_conditions[context_id][1])
+            has_gender = exp_id[-3] in ['M', 'F']
+            if has_prosody and has_gender:
                 new_qs, ids = make_gender_question(q_counter=q_counter+1,
                                                    experiment_id=exp_id,
                                                    basis_question=elements[-2]
