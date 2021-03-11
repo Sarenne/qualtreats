@@ -53,6 +53,60 @@
           }
         },
         {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "BL_2 Block",
+          "ID": "BL_2",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID3"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID4"
+            },
+            {
+              "Type": "Page Break"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Collapsed"
+          }
+        },
+        {
+          "Type": "Standard",
+          "SubType": "",
+          "Description": "BL_3 Block",
+          "ID": "BL_3",
+          "BlockElements": [
+            {
+              "Type": "Question",
+              "QuestionID": "QID5"
+            },
+            {
+              "Type": "Page Break"
+            },
+            {
+              "Type": "Question",
+              "QuestionID": "QID6"
+            },
+            {
+              "Type": "Page Break"
+            }
+          ],
+          "Options": {
+            "BlockLocking": "false",
+            "RandomizeQuestions": "false",
+            "BlockVisibility": "Collapsed"
+          }
+        },
+        {
           "Type": "Trash",
           "Description": "Trash / Unused Questions",
           "ID": "BL_b9JrFiAUwvf53RH",
@@ -77,18 +131,30 @@
             "Autofill": []
           },
           {
-            "Type": "BlockRandomizer",
+            "Type": "Standard",
+            "ID": "BL_2",
             "FlowID": "FL_3",
+            "Autofill": []
+          },
+          {
+            "Type": "BlockRandomizer",
+            "FlowID": "FL_5",
             "SubSet": "3",
             "EvenPresentation": true,
             "Flow": [
               {
                 "Type": "Standard",
                 "ID": "BL_0JTAnrSQCcZOo5M",
-                "FlowID": "FL_4",
+                "FlowID": "FL_6",
                 "Autofill": []
               }
             ]
+          },
+          {
+            "Type": "Standard",
+            "ID": "BL_3",
+            "FlowID": "FL_4",
+            "Autofill": []
           }
         ],
         "Properties": {
@@ -290,6 +356,266 @@
           "Private": false,
           "Hidden": false
         }
+      }
+    },
+    {
+        "SurveyID": "SV_4TLSPrwNIjymdh3",
+        "Element": "SQ",
+        "PrimaryAttribute": "QID3",
+        "SecondaryAttribute": "QID3",
+        "TertiaryAttribute": null,
+        "Payload": {
+            "QuestionText": "<div>Consider the following segment of a phone conversation (you will hear the sections in <u><b>underlined bold</b></u>):</div><div class=\"chat\"><div class=\"dots messages\"><div class=\"message\"> .  .  . </div></div> <div class=\"yours messages\"><div class=\"message last\">yeah and see that's i couldn't do it i think that that'd be super tough just because_1 the people that you learn to love you see dying off one by one and i think that would just be really i admire those who can i couldn't handle that personally</div></div><div class=\"mine messages\"><div class=\"message last\">yeah [noise] i have a friend here that [noise] i think her mother's like ninety seven or something and um she's been pl[eased]- well pleased with the care of course she goes every day</div></div> <div class=\"yours messages\"><div class=\"message\">uh-huh</div><div class=\"message last\">yeah</div></div><div class=\"mine messages\"><div class=\"message last\"><u><b>and i think as long as you go every day to see about them they get better care</b></u></div></div> <div class=\"yours messages\"><div class=\"message last\"><u><b>yeah i think you're right</b></u></div></div><div class=\"mine messages\"><div class=\"message last\">uh-huh</div></div> <div class=\"yours messages\"><div class=\"message last\">and i think as you learn to know the volunteers and help them know a little bit about your family i guess that would make a difference too [noise]</div></div><div class=\"mine messages\"><div class=\"message last\">yeah right [noise] well [noise] i do you know anything about the um qualifications uh i mean of knowing qualifications of the nursing homes</div></div><div class=\"dots messages\"><div class=\"message\"> .  .  . </div></div></div><div><u>Only one of the following recordings is the <b>true</b> segment in this conversation. Assign each audio segment a score of how likely it is to be the <b>true</b> segment</u>.<br><br>(You can listen to the recordings as many times as you need to make your judgements.)</div>",
+            "DefaultChoices": false,
+            "DataExportTag": "C7_sw03611_58_0_1_F_1",
+            "QuestionID": "QID3",
+            "QuestionType": "Matrix",
+            "Selector": "Likert",
+            "SubSelector": "SingleAnswer",
+            "Configuration": {
+                "QuestionDescriptionOption": "UseText",
+                "TextPosition": "inline",
+                "ChoiceColumnWidth": 25,
+                "RepeatHeaders": "none",
+                "WhiteSpace": "OFF",
+                "MobileFirst": true,
+                "ChoiceColumnWidthPixels": 296
+            },
+            "QuestionDescription": "Q3",
+            "Choices": {
+                "3": {
+                    "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw03611_58_0_1_F_1/2_sw03910_39.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw03611_58_0_1_F_1/2_sw03910_39.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+                },
+                "1": {
+                    "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw03611_58_0_1_F_1/0_sw04796_86.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw03611_58_0_1_F_1/0_sw04796_86.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+                },
+                "2": {
+                    "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw03611_58_0_1_F_1/1_sw03611_58.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw03611_58_0_1_F_1/1_sw03611_58.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+                },
+                "4": {
+                    "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw03611_58_0_1_F_1/3_sw02987_115.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw03611_58_0_1_F_1/3_sw02987_115.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+                }
+            },
+            "ChoiceOrder": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "Validation": {
+                "Settings": {
+                    "ForceResponse": "ON",
+                    "ForceResponseType": "ON",
+                    "Type": "None"
+                }
+            },
+            "GradingData": [],
+            "Language": [],
+            "NextChoiceId": 11,
+            "NextAnswerId": 7,
+            "Answers": {
+                "1": {
+                    "Display": "Very unlikely"
+                },
+                "2": {
+                    "Display": "Somewhat Unlikely"
+                },
+                "3": {
+                    "Display": "Somewhat likely"
+                },
+                "4": {
+                    "Display": "Very likely"
+                }
+            },
+            "AnswerOrder": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "ChoiceDataExportTags": false,
+            "DataVisibility": {
+                "Private": false,
+                "Hidden": false
+            },
+            "QuestionText_Unsafe": "Consider the conversation:\n\n\n<div style=\"text-align: left; width:500px\"><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">Speaker A: the initial tur</span><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">n</span></div> \n<div style=\"text-align: right; width:500px\"> <span style=\"text-align: right; color:#065B9A; font-size: 16pt\"> <b> Speaker B: the response </b> </span> </div>\n\n<div><br></div><div><br></div><div>Score each of the following speech segments by how likely they are to be the&nbsp;<em>true&nbsp;</em>response in the conversation above.</div>\n\n\n<em></em>",
+            "Randomization": {
+                "Advanced": null,
+                "Type": "All",
+                "TotalRandSubset": ""
+            }
+        }
+    },
+    {
+        "SurveyID": "SV_4TLSPrwNIjymdh3",
+        "Element": "SQ",
+        "PrimaryAttribute": "QID4",
+        "SecondaryAttribute": "QID4",
+        "TertiaryAttribute": null,
+        "Payload": {
+            "QuestionText": "<div>Consider the previous recordings that you just listened to. Please select the gender of the speaker who said: </div><div class=\"chat\"><div class=\"dots messages\"><div class=\"message\"> .  .  . </div></div><div class=\"mine messages\"><div class=\"message last\"><u><b>and i think as long as you go every day to see about them they get better care</b></u></div></div><div class=\"dots messages\"><div class=\"message\"> .  .  . </div></div></div>",
+            "DataExportTag": "G_sw03611_58_0_1_F_1",
+            "QuestionType": "MC",
+            "Selector": "SAVR",
+            "SubSelector": "TX",
+            "Configuration": {
+                "QuestionDescriptionOption": "UseText"
+            },
+            "QuestionDescription": "Q4",
+            "Choices": {
+                "1": {
+                    "Display": "Male"
+                },
+                "2": {
+                    "Display": "Female"
+                }
+            },
+            "ChoiceOrder": [
+                1,
+                2
+            ],
+            "Validation": {
+                "Settings": {
+                    "ForceResponse": "OFF",
+                    "ForceResponseType": "ON",
+                    "Type": "None"
+                }
+            },
+            "Language": [],
+            "NextChoiceId": 3,
+            "NextAnswerId": 1,
+            "QuestionID": "QID4"
+        }
+    },
+    {
+      "SurveyID": "SV_3UEKXZ4Fn2pOvmS",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID5",
+      "SecondaryAttribute": "Q5",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<div>Consider the following segment of a phone conversation (you will hear the sections in <u><b>underlined bold</b></u>):</div><div class=\"chat\"><div class=\"dots messages\"><div class=\"message\"> .  .  . </div></div><div class=\"mine messages\"><div class=\"message last\">that's true</div></div> <div class=\"yours messages\"><div class=\"message last\">um i haven't seen that done for a long time either</div></div><div class=\"mine messages\"><div class=\"message last\">yeah no deposit no return</div></div> <div class=\"yours messages\"><div class=\"message last\">yeah everything's no deposit no return or else it's all plastic jugs that you just pitch you know uh</div></div><div class=\"mine messages\"><div class=\"message\">i was listening to Karen DeNard the other night</div><div class=\"message last\">on the way home from school you know she's got that talk show and uh</div></div> <div class=\"yours messages\"><div class=\"message last\">yeah</div></div><div class=\"mine messages\"><div class=\"message\"><u><b>KRA</b></u></div><div class=\"message\"><u><b>and they were talking about you know a lot of the plastic bottles</b></u></div><div class=\"message last\"><u><b>you can't just throw all plastics together</b></u></div></div> <div class=\"yours messages\"><div class=\"message last\"><u><b>is that right</b></u></div></div><div class=\"dots messages\"><div class=\"message\"> .  .  . </div></div></div><div><u>Only one of the following recordings is the <b>true</b> segment in this conversation. Assign each audio segment a score of how likely it is to be the <b>true</b> segment</u>.<br><br>(You can listen to the recordings as many times as you need to make your judgements.)</div>",
+        "DefaultChoices": false,
+        "DataExportTag": "C5_sw02649_49_1_6_M_3",
+        "QuestionID": "QID5",
+        "QuestionType": "Matrix",
+        "Selector": "Likert",
+        "SubSelector": "SingleAnswer",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText",
+          "TextPosition": "inline",
+          "ChoiceColumnWidth": 25,
+          "RepeatHeaders": "none",
+          "WhiteSpace": "OFF",
+          "MobileFirst": true,
+          "ChoiceColumnWidthPixels": 296
+        },
+        "QuestionDescription": "Q5",
+        "Choices": {
+          "1": {
+            "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw02649_49_1_6_M_3/0_sw03590_16.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw02649_49_1_6_M_3/0_sw03590_16.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+          },
+          "2": {
+            "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw02649_49_1_6_M_3/1_sw03400_91.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw02649_49_1_6_M_3/1_sw03400_91.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+          },
+          "3": {
+            "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw02649_49_1_6_M_3/2_sw02579_10.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw02649_49_1_6_M_3/2_sw02579_10.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+          },
+          "4": {
+            "Display": "<audio class=\"qmedia\" controls=\"true\" height=\"40\" preload=\"auto\" width=\"320\"><source src=\"https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw02649_49_1_6_M_3/3_sw02649_49.wav\" type=\"audio/wav\" /><embed class=\"qmedia\" flashconsts=\"file=https://data.cstr.ed.ac.uk/sarenne/qualtrics_set_swb/sw02649_49_1_6_M_3/3_sw02649_49.wav&amp;width=320&amp;height=20&amp;type=wav&amp;autostart=false\" height=\"20\" pluginspage=\"http://adobe.com/flashplayer/\" src=\"/WRQualtricsShared/Flash/flvplayer.swf\" type=\"application/x-shockwave-flash\" width=\"320\" wmode=\"transparent\" /></audio>\n"
+          }
+        },
+        "ChoiceOrder": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "ON",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "GradingData": [],
+        "Language": [],
+        "NextChoiceId": 11,
+        "NextAnswerId": 7,
+        "Answers": {
+          "1": {
+            "Display": "Very unlikely"
+          },
+          "2": {
+            "Display": "Somewhat Unlikely"
+          },
+          "3": {
+            "Display": "Somewhat likely"
+          },
+          "4": {
+            "Display": "Very likely"
+          }
+        },
+        "AnswerOrder": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "ChoiceDataExportTags": false,
+        "DataVisibility": {
+          "Private": false,
+          "Hidden": false
+        },
+        "QuestionText_Unsafe": "Consider the conversation:\n\n\n<div style=\"text-align: left; width:500px\"><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">Speaker A: the initial tur</span><span style=\"color: rgb(6, 154, 98); font-size: 16pt;\">n</span></div> \n<div style=\"text-align: right; width:500px\"> <span style=\"text-align: right; color:#065B9A; font-size: 16pt\"> <b> Speaker B: the response </b> </span> </div>\n\n<div><br></div><div><br></div><div>Score each of the following speech segments by how likely they are to be the&nbsp;<em>true&nbsp;</em>response in the conversation above.</div>\n\n\n<em></em>",
+        "Randomization": {
+          "Advanced": null,
+          "Type": "All",
+          "TotalRandSubset": ""
+        }
+      }
+    },
+    {
+      "SurveyID": "SV_3UEKXZ4Fn2pOvmS",
+      "Element": "SQ",
+      "PrimaryAttribute": "QID6",
+      "SecondaryAttribute": "Q6",
+      "TertiaryAttribute": null,
+      "Payload": {
+        "QuestionText": "<div>Consider the previous recordings that you just listened to. Please select the gender of the speaker who said: </div><div class=\"chat\"><div class=\"dots messages\"><div class=\"message\"> .  .  . </div></div><div class=\"mine messages\"><div class=\"message\"><u><b>KRA</b></u></div><div class=\"message\"><u><b>and they were talking about you know a lot of the plastic bottles</b></u></div><div class=\"message last\"><u><b>you can't just throw all plastics together</b></u></div></div><div class=\"dots messages\"><div class=\"message\"> .  .  . </div></div></div>",
+        "DataExportTag": "G_sw02649_49_1_6_M_3",
+        "QuestionType": "MC",
+        "Selector": "SAVR",
+        "SubSelector": "TX",
+        "Configuration": {
+          "QuestionDescriptionOption": "UseText"
+        },
+        "QuestionDescription": "Q6",
+        "Choices": {
+          "1": {
+            "Display": "Male"
+          },
+          "2": {
+            "Display": "Female"
+          }
+        },
+        "ChoiceOrder": [
+          1,
+          2
+        ],
+        "Validation": {
+          "Settings": {
+            "ForceResponse": "OFF",
+            "ForceResponseType": "ON",
+            "Type": "None"
+          }
+        },
+        "Language": [],
+        "NextChoiceId": 3,
+        "NextAnswerId": 1,
+        "QuestionID": "QID6"
       }
     },
     {
