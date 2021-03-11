@@ -181,9 +181,9 @@ OUTPUT_PATH = 'discrim_turn_resources/'
 # http://data.cstr.ed.ac.uk/sarenne/test_qualtrics/
 # https://groups.inf.ed.ac.uk/cstr3/sarenne/test_qualtrics/sw_40106_148_4_4_2/
 
-def get_urls(experiment_ids=[], write=False,
+def get_urls(experiment_ids=[], write=True,
              base_nfs_path='/group/project/cstr3/html/sarenne/test_qualtrics/',
-             path_ext = 'qualtrics_pilot10/',
+             path_ext = 'qualtrics_swb/',
              base_path='/afs/inf.ed.ac.uk/group/cstr/datawww/sarenne/',
              base_cstr_url='https://groups.inf.ed.ac.uk/cstr3/sarenne/',
              base_url='https://data.cstr.ed.ac.uk/sarenne/'):
@@ -199,13 +199,13 @@ def get_urls(experiment_ids=[], write=False,
     experiment_data = {exp_id: glob.glob(base_path + path_ext + exp_id + '/*.wav') for exp_id in experiment_ids}
     url_data = {exp_id: [base_url + path_ext + exp_id + '/' + e.split('/')[-1] for e in files] for exp_id, files in experiment_data.items()}
     if write:
-        with open(OUTPUT_PATH + 'urls.json', 'w+') as fs:
+        with open(OUTPUT_PATH + 'urls_52.json', 'w+') as fs:
             json.dump(url_data, fs)
 
     return experiment_data, url_data
 
 
-def assign_surveys(experiment_ids, context_conditions, repeats, write=False):
+def assign_surveys(experiment_ids, context_conditions, repeats, write=False, seed=0):
     """
     For a set of experiment ids, write a json file to structure a set of surveys st for each experiment_id,
     each context condition is included in 'repeats' surveys, and each survey only contains 1 instance of a
@@ -251,6 +251,8 @@ def assign_surveys(experiment_ids, context_conditions, repeats, write=False):
             participants[p][sample_id] = assign_participant(p, assigns)
 
         return participants
+
+    np.random.seed(seed)
 
     # the main loop
     parts = list(string.ascii_lowercase)[:len(context_conditions * repeats)]
