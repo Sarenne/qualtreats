@@ -199,7 +199,7 @@ def get_urls(experiment_ids=[], write=True,
     experiment_data = {exp_id: glob.glob(base_path + path_ext + exp_id + '/*.wav') for exp_id in experiment_ids}
     url_data = {exp_id: [base_url + path_ext + exp_id + '/' + e.split('/')[-1] for e in files] for exp_id, files in experiment_data.items()}
     if write:
-        with open(OUTPUT_PATH + 'urls_52.json', 'w+') as fs:
+        with open(OUTPUT_PATH + 'urls_50.json', 'w+') as fs:
             json.dump(url_data, fs)
 
     return experiment_data, url_data

@@ -249,15 +249,17 @@ def main():
         elements = list(map(set_id, elements))
 
         # get basic survey components from elements JSON
-        basis_blocks = elements[0]
+        basis_blocks = elements[0] # "Survey Blocks"
         basis_flow = elements[1]
         rs = elements[2]
-        basis_survey_count = elements[7]
+        basis_survey_count = elements[7] #  'Survey Question Count'
+
+        import IPython
+        IPython.embed()
 
         # create list to store generated question blocks
         questions = []
         question_ids = []
-
         # create counters to use when indexing optional lists
         q_counter = 2 # qualtrics question numbering starts at 1 (and first 'questions' are ethics + the intro)
 

@@ -151,8 +151,6 @@ def set_id(obj):
     return obj
 
 
-
-
 def main():
     """
     Given a json file (URLS_PATH in the form {experiment_id: urls}), contruct a qualtrics survey. Order of questions
